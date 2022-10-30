@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">EventPlanner</string>
+    <string name="username">Username:</string>
+    <string name="password">Password:</string>
+    <string name="login">Login</string>
+    <string name="help">Help</string>
+
+    <!-- Strings LoginActivity-->
+    <string name="login_hint_password">Your password</string>
+    <string name="login_hint_username">Your username</string>
+    <string name="login_signIn">Sign in</string>
+    <string name="login_about_Niklas">Login to your existing account or sign in using the icon in the toolbar menu. About: Niklas Aßmann, 1.0 </string>
+
+    <string name="register1_email">Email:</string>
+    <string name="register1_repeat_password">Repeat Password:</string>
+    <string name="register1_about_Niklas">Please enter a valid email and a username/password of your choice. About: Niklas Aßmann, 1.0 </string>
+
 </resources>

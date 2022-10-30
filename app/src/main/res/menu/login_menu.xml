@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/login_about"
+        android:title="@string/help"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/login_toolbar_signIn"
+        android:title="add_User"
+        android:icon="@drawable/icons8_add_user_male_96"
+        app:showAsAction="always"/>
+
+
+</menu>
