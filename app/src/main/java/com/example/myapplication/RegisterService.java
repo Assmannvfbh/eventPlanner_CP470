@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class RegisterService extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "Test_Database";
+    public static final String DATABASE_NAME = "Test1_Database";
     public static final String TABLE_NAME = "Test_Table";
 
     public static final String EMAIL = "EMAIL";
@@ -15,7 +15,7 @@ public class RegisterService extends SQLiteOpenHelper {
 
     private static final String DATABASE_CREATE = "create table "
             + TABLE_NAME + "(" + USERNAME
-            + " String primary key autoincrement, " + EMAIL
+            + " text primary key, " + EMAIL
             + " text not null, " + PASSWORD + " text not null);";
 
     public RegisterService(Context ctx){

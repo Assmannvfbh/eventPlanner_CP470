@@ -72,10 +72,15 @@ public class Register1Activity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
+
+            //TODO: Check Email field for duplicates, password parity validation
+
             String username = usernameTextField.getText().toString();
             String email = emailTextField.getText().toString();
             String password = passwordTextField.getText().toString();
-            Cursor cursorForUsername = database.rawQuery("Select * from " + RegisterService.TABLE_NAME,null);
+            String[] usernameArray = new String[1];
+            usernameArray[0] = username;
+            Cursor cursorForUsername = database.rawQuery("Select USERNAME from " + RegisterService.TABLE_NAME + " WHERE USERNAME = ?" , usernameArray);
             int rows = cursorForUsername.getCount();
             if(rows > 0){
                 Toast.makeText(Register1Activity.this, "Username already exists", Toast.LENGTH_SHORT).show();
