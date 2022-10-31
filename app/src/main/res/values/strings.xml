@@ -14,5 +14,14 @@
     <string name="register1_email">Email:</string>
     <string name="register1_repeat_password">Repeat Password:</string>
     <string name="register1_about_Niklas">Please enter a valid email and a username/password of your choice. About: Niklas Aßmann, 1.0 </string>
+    <string name="date_and_time">Date and Time:</string>
+    <string name="description">Description:</string>
+    <string name="priceAmount">$</string>
+    <string name="title">Title:</string>
+    <string name="organizer">Organizer:</string>
+    <string name="price">Price:</string>
+    <string name="create_event">Create Event</string>
+    <string name="location">Location:</string>
+    <string name="event_name">Event Name</string>
 
 </resources>
