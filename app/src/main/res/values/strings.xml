@@ -24,4 +24,8 @@
     <string name="location">Location:</string>
     <string name="event_name">Event Name</string>
 
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="Email">E-mail</string>
+    <string name="DOB">Date Of Birth</string>
 </resources>
