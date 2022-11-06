@@ -12,11 +12,19 @@ public class RegisterService extends SQLiteOpenHelper {
     public static final String EMAIL = "EMAIL";
     public static final String USERNAME = "USERNAME";
     public static final String PASSWORD = "PASSWORD";
+    public static final String NAME = "NAME";
+    public static final String SURNAME = "SURNAME";
+    public static final String DATE_OF_BIRTH = "DATE_OF_BIRTH";
+
 
     private static final String DATABASE_CREATE = "create table "
-            + TABLE_NAME + "(" + USERNAME
-            + " text primary key, " + EMAIL
-            + " text not null, " + PASSWORD + " text not null);";
+            + TABLE_NAME + "("
+            + USERNAME + " text primary key, "
+            + EMAIL + " text not null, "
+            + PASSWORD + " text not null, "
+            + NAME + " text not null, "
+            + SURNAME + " text not null, "
+            + DATE_OF_BIRTH + " text);";
 
     public RegisterService(Context ctx){
         super(ctx, DATABASE_NAME, null, 1);

@@ -19,7 +19,7 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/icons8_user_96" />
+        app:srcCompat="@drawable/icons8_dancing_96" />
 
     <TextView
         android:id="@+id/textView4"
@@ -30,7 +30,7 @@
         android:gravity="center"
         android:textColor="@color/black"
         android:text="Welcome to GoParty!"
-        android:textSize="24dp" />
+        android:textSize="24sp" />
 
     <TextView
         android:textSize="16sp"

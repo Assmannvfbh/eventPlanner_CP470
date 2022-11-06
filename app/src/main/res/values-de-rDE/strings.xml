@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EventPlanner</string>
+    <string name="username">Username:</string>
+    <string name="password">Password:</string>
+    <string name="login">Login</string>
+    <string name="help">Hilfe</string>
+    <string name="login_hint_password">Dein Passwort</string>
+    <string name="login_hint_username">Dein Username</string>
+    <string name="register1_email">Email</string>
+    <string name="register1_repeat_password">Passwort wiederholen</string>
+    <string name="date_and_time">Datum und Uhrzeit</string>
+    <string name="description">Beschreibung</string>
+    <string name="priceAmount">$</string>
+    <string name="title">Titel:</string>
+    <string name="price">Preis</string>
+    <string name="create_event">Event erstellen</string>
+    <string name="location">Ort:</string>
+    <string name="event_name">Event Name</string>
+
+</resources>

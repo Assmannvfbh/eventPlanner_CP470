@@ -27,5 +27,9 @@
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="Email">E-mail</string>
-    <string name="DOB">Date Of Birth</string>
+    <string name="DOB">YYYY-MM-DD</string>
+    <string name="registration_help">Please enter a valid email and a username/password of your choice. About: Niklas Aßmann and (Enter Name), 1.0 </string>
+
+
+    <string name="registration_register">register</string>
 </resources>
