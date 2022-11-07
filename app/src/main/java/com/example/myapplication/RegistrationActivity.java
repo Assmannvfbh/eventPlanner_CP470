@@ -1,13 +1,11 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.Dialog;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -28,7 +26,6 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -138,7 +135,7 @@ public class RegistrationActivity extends AppCompatActivity {
             entries.put("surname", surnameTextField.getText().toString());
             entries.put("dateOfBirth", birthday.getText().toString());
 
-            Registerquery query = new Registerquery();
+            RegistrationQuery query = new RegistrationQuery();
             query.execute(entries);
         }
     }
@@ -159,7 +156,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
 
-    public class Registerquery extends AsyncTask<Map<String, String>, Integer, Integer> {
+    public class RegistrationQuery extends AsyncTask<Map<String, String>, Integer, Integer> {
 
         final Integer USERNAME_EXISTS = -1;
         final Integer USER_CREATED = 1;

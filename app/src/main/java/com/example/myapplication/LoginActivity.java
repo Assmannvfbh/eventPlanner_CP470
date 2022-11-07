@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,6 +18,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -71,20 +75,49 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            String usn = username.getText().toString();
-            String psw = password.getText().toString();
+
+            Map<String,String> entries = new HashMap<>();
+            entries.put("username",username.getText().toString());
+            entries.put("password",password.getText().toString());
+
+            LoginQuery query = new LoginQuery();
+            query.execute(entries);
+        }
+    }
+
+    public class LoginQuery extends AsyncTask<Map<String, String>, Integer, Integer>{
+
+        final Integer LOGIN_SUCESSFULL = 1;
+        final Integer LOGIN_FAILURE = -1;
+
+        @Override
+        protected Integer doInBackground(Map<String, String>... maps) {
+
+            Map<String, String> entries = maps[0];
             String[] parameters = new String[2];
-            parameters[0] = usn;
-            parameters[1] = psw;
+            parameters[0] = entries.get("username");
+            parameters[1] = entries.get("password");;
 
             Cursor cursor = database.rawQuery("SELECT * FROM " + RegisterService.TABLE_NAME + " WHERE USERNAME = ? AND PASSWORD = ?",parameters);
             cursor.moveToFirst();
 
             if(cursor.getCount() > 0){
+                return LOGIN_SUCESSFULL;
+            }
+            else {
+                return LOGIN_FAILURE;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+            super.onPostExecute(integer);
+
+            if(integer.equals(LOGIN_SUCESSFULL)){
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }
-            else {
+            else if(integer.equals(LOGIN_FAILURE)){
                 Toast.makeText(LoginActivity.this, "Wrong Password or Username does not exist", Toast.LENGTH_SHORT).show();
             }
         }
