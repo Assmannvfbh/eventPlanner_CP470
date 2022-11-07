@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -25,6 +26,8 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -125,41 +128,18 @@ public class RegistrationActivity extends AppCompatActivity {
         public void onClick(View v) {
 
             //TODO: Check Email field for duplicates, password parity validation
+            Map<String, String> entries = new HashMap<>();
 
-            String username = usernameTextField.getText().toString();
-            String email = emailTextField.getText().toString();
-            String password = passwordTextField.getText().toString();
-            String passwordRepeat = passwordRepeatTextField.getText().toString();
-            String forename = nameTextField.getText().toString();
-            String surname = surnameTextField.getText().toString();
-            String date_of_birth = birthday.getText().toString();
-            String[] usernameArray = new String[1];
-            usernameArray[0] = username;
+            entries.put("username", usernameTextField.getText().toString());
+            entries.put("email", emailTextField.getText().toString());
+            entries.put("password", passwordTextField.getText().toString());
+            entries.put("passwordRepeat", passwordRepeatTextField.getText().toString());
+            entries.put("forename", nameTextField.getText().toString());
+            entries.put("surname", surnameTextField.getText().toString());
+            entries.put("dateOfBirth", birthday.getText().toString());
 
-            Cursor cursorForUsername = database.rawQuery("Select USERNAME from " + RegisterService.TABLE_NAME + " WHERE USERNAME = ?" , usernameArray);
-            int rows = cursorForUsername.getCount();
-            if(rows > 0){
-                Toast.makeText(RegistrationActivity.this, "Username already exists", Toast.LENGTH_SHORT).show();
-            }
-            else if(android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches() && password.equals(passwordRepeat)){
-                ContentValues contentValues = new ContentValues();
-                contentValues.put(RegisterService.USERNAME, username);
-                contentValues.put(RegisterService.EMAIL, email);
-                contentValues.put(RegisterService.PASSWORD, password);
-                contentValues.put(RegisterService.DATE_OF_BIRTH, date_of_birth);
-                contentValues.put(RegisterService.NAME,forename);
-                contentValues.put(RegisterService.SURNAME,surname);
-
-                database.insert(RegisterService.TABLE_NAME, null, contentValues);
-
-                Toast.makeText(RegistrationActivity.this, "Registering successful!", Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-            else{
-                Toast.makeText(RegistrationActivity.this, "Password or Email not valid, please try again", Toast.LENGTH_SHORT).show();
-            }
+            Registerquery query = new Registerquery();
+            query.execute(entries);
         }
     }
 
@@ -177,5 +157,55 @@ public class RegistrationActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    public class Registerquery extends AsyncTask<Map<String, String>, Integer, Integer> {
+
+        final Integer USERNAME_EXISTS = -1;
+        final Integer USER_CREATED = 1;
+        final Integer ENTRY_ERROR = -2;
+
+
+        @Override
+        protected Integer doInBackground(Map<String, String>... maps) {
+            Map<String, String> entries = maps[0];
+            String[] usernameArray = new String[1];
+            usernameArray[0] = entries.get("username");
+
+            Cursor cursorForUsername = database.rawQuery("Select USERNAME from " + RegisterService.TABLE_NAME + " WHERE USERNAME = ?", usernameArray);
+            int rows = cursorForUsername.getCount();
+            if (rows > 0) {
+                return USERNAME_EXISTS;
+            }
+            else if (android.util.Patterns.EMAIL_ADDRESS.matcher(entries.get("email")).matches() && entries.get("password").equals(entries.get("passwordRepeat"))) {
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(RegisterService.USERNAME, entries.get("username"));
+                contentValues.put(RegisterService.EMAIL, entries.get("email"));
+                contentValues.put(RegisterService.PASSWORD, entries.get("password"));
+                contentValues.put(RegisterService.DATE_OF_BIRTH, entries.get("dateOfBirth"));
+                contentValues.put(RegisterService.NAME, entries.get("forename"));
+                contentValues.put(RegisterService.SURNAME, entries.get("surname"));
+
+                database.insert(RegisterService.TABLE_NAME, null, contentValues);
+                return USER_CREATED;
+            }
+            return ENTRY_ERROR;
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+            super.onPostExecute(integer);
+            if (integer.equals(USER_CREATED)) {
+                Toast.makeText(RegistrationActivity.this, "Registering successful!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+            else if(integer.equals(ENTRY_ERROR)){
+                Toast.makeText(RegistrationActivity.this, "Password or Email not valid, please try again", Toast.LENGTH_SHORT).show();
+            }
+            else if(integer.equals(USERNAME_EXISTS)){
+                Toast.makeText(RegistrationActivity.this, "Username already exists", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
