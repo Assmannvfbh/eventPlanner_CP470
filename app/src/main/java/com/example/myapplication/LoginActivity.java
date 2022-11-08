@@ -15,22 +15,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 public class LoginActivity extends AppCompatActivity {
 
-    //Test data: Username = Dominik, Password = testpassword
+    //Test data: Username = assmannvfbh, Password = abc
 
     Toolbar toolbar;
     EditText username;
     EditText password;
     SQLiteDatabase database;
     Button loginButton;
+    ProgressBar progressBar;
 
 
     @Override
@@ -41,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         username = findViewById(R.id.login_uName_textfield);
         password = findViewById(R.id.login_psw_textfield);
+        progressBar = findViewById(R.id.login_progressBar);
         loginButton = findViewById(R.id.login_login);
         loginButton.setOnClickListener(new loginListener());
 
@@ -75,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-
+            progressBar.setVisibility(View.VISIBLE);
             Map<String,String> entries = new HashMap<>();
             entries.put("username",username.getText().toString());
             entries.put("password",password.getText().toString());
@@ -120,6 +124,7 @@ public class LoginActivity extends AppCompatActivity {
             else if(integer.equals(LOGIN_FAILURE)){
                 Toast.makeText(LoginActivity.this, "Wrong Password or Username does not exist", Toast.LENGTH_SHORT).show();
             }
+            progressBar.setVisibility(View.INVISIBLE);
         }
     }
 
