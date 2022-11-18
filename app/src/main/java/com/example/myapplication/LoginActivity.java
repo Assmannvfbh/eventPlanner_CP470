@@ -27,7 +27,7 @@ import java.util.Properties;
 public class LoginActivity extends AppCompatActivity {
 
     //Test data: Username = assmannvfbh, Password = abc
-
+    //Test data: Username = Marcus, Password = abc
     Toolbar toolbar;
     EditText username;
     EditText password;
