@@ -98,7 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/EventIcon"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="75dp"
-        android:text="Events" />
+        android:layout_marginRight="60dp"
+        android:text="Create Event" />
 
 </RelativeLayout>
