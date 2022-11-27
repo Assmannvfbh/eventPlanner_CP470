@@ -4,6 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Marcus Alunni/AndroidStudioProjects/eventPlanner_CP470/app/src/main/res/layout/activity_create_event.xml" value="0.1" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_create_event.xml" value="0.25" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_event_details.xml" value="0.25" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_registration.xml" value="0.264" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/datepicker.xml" value="0.14166666666666666" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/menu/login_menu.xml" value="0.25" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/menu/standard_menu.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_create_event.xml" value="0.2033514492753623" />
       </map>
     </option>

@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".CreateEvent">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/createEvent_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/eventTitle"
@@ -14,10 +21,10 @@
         android:text="@string/title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.081"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintVertical_bias="0.078" />
 
     <EditText
         android:id="@+id/eventTitleText"
@@ -29,8 +36,7 @@
         app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.092" />
-
+        app:layout_constraintVertical_bias="0.107" />
 
     <TextView
         android:id="@+id/eventOrganizer"
@@ -42,7 +48,7 @@
         app:layout_constraintHorizontal_bias="0.089"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.172" />
+        app:layout_constraintVertical_bias="0.186" />
 
     <EditText
         android:id="@+id/eventOrganizerText"
@@ -69,7 +75,7 @@
         app:layout_constraintHorizontal_bias="0.092"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintVertical_bias="0.332" />
 
     <EditText
         android:id="@+id/eventDescriptionText"
@@ -83,7 +89,7 @@
         app:layout_constraintHorizontal_bias="0.224"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.359"
+        app:layout_constraintVertical_bias="0.395"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
@@ -155,10 +161,10 @@
         android:layout_height="141dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.29"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.793"
+        app:layout_constraintVertical_bias="0.781"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText

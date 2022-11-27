@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -8,8 +9,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.EditText;
+
+import com.google.android.gms.maps.MapView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +26,8 @@ public class CreateEvent extends AppCompatActivity {
     EditText eventDate;
     EditText eventTime;
     EditText eventPrice;
+    MapView map;
+    Toolbar toolbar;
 
     SQLiteDatabase db;
 
@@ -34,11 +41,22 @@ public class CreateEvent extends AppCompatActivity {
         eventDate = (EditText) findViewById(R.id.editTextDate);
         eventTime = (EditText) findViewById(R.id.editTextTime);
         eventPrice = (EditText) findViewById(R.id.priceText);
+        map = findViewById(R.id.mapView);
 
         EventService service = new EventService(this);
         db = service.getWritableDatabase();
         service.onCreate(db);
 
+        toolbar = findViewById(R.id.createEvent_toolbar);
+        setSupportActionBar(toolbar);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.standard_menu,menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     public void createEvent(View view){

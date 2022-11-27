@@ -9,19 +9,17 @@
     android:layout_row="10"
     android:layout_column="10"
     android:columnCount="10"
-    android:orientation="vertical"
-
-    >
-
-
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/registration_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
         <ImageView
             android:id="@+id/profile_photo"
             android:layout_width="wrap_content"
@@ -149,7 +147,7 @@
             android:textStyle="bold" />
 
 
-        <EditText
+        <TextView
             android:id="@+id/registration_DO2"
             android:layout_width="256dp"
             android:layout_height="50dp"
@@ -161,7 +159,9 @@
             android:background="@color/light_grey"
             android:gravity="center"
             android:hint="@string/DOB"
-            android:inputType="textPersonName" />
+            android:inputType="date"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/registration_password_input"

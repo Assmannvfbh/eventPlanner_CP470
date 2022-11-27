@@ -24,9 +24,12 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
+
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,7 +44,7 @@ public class RegistrationActivity extends AppCompatActivity {
     EditText passwordRepeatTextField;
     EditText nameTextField;
     EditText surnameTextField;
-    EditText birthday;
+    TextView birthday;
     Dialog dialog;
     ImageView profilePic;
     Button registerButton;
@@ -67,7 +70,6 @@ public class RegistrationActivity extends AppCompatActivity {
         surnameTextField = findViewById(R.id.registration_surname_input);
         nameTextField = findViewById(R.id.registration_firstname_input);
         birthday = findViewById(R.id.registration_DO2);
-        birthday.setInputType(InputType.TYPE_NULL);
         birthday.setOnClickListener(new dateOfBirthListener());
 
         profilePic = (ImageView) findViewById(R.id.profile_photo);
@@ -117,7 +119,8 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     public void setDateText(DatePicker datePicker){
-        String st = datePicker.getYear() + "-" + datePicker.getMonth() + "-" + datePicker.getDayOfMonth();
+        int month = datePicker.getMonth() + 1; //add +1, because getMonth() returns values from 0 - 11
+        String st = datePicker.getYear() + "-" + month + "-" + datePicker.getDayOfMonth();
         birthday.setText(st);
         dialog.dismiss();
     }
@@ -215,7 +218,7 @@ public class RegistrationActivity extends AppCompatActivity {
         protected void onPostExecute(Integer integer) {
             super.onPostExecute(integer);
             if (integer.equals(USER_CREATED)) {
-                Toast.makeText(RegistrationActivity.this, "Registering successful!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegistrationActivity.this, "Registration successful!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
                 startActivity(intent);
             }
