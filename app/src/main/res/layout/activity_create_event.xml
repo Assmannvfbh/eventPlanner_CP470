@@ -167,34 +167,46 @@
         app:layout_constraintVertical_bias="0.781"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <EditText
-        android:id="@+id/editTextDate"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="date"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.154"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.559"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <EditText
-        android:id="@+id/editTextTime"
-        android:layout_width="140dp"
         android:layout_height="48dp"
-        android:ems="10"
-        android:inputType="time"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.933"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.558"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:orientation="horizontal"
 
+        app:layout_constraintStart_toStartOf="@+id/eventDateTime"
+        app:layout_constraintTop_toBottomOf="@+id/eventDateTime">
+
+
+        <TextView
+            android:id="@+id/editTextDate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ems="10"
+            android:gravity="center_vertical"
+            android:hint="@string/DOB"
+            android:inputType="date"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toStartOf="@+id/editTextTime"
+            app:layout_constraintHorizontal_bias="0.348"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eventDateTime" />
+
+        <TextView
+            android:id="@+id/editTextTime"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:gravity="center_vertical"
+            android:inputType="time"
+            android:hint="@string/time_hint"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.933"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.558"
+             />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

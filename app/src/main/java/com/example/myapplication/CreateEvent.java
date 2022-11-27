@@ -3,18 +3,26 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.icu.util.Calendar;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
-import com.google.android.gms.maps.MapView;
+//import com.google.android.gms.maps.MapView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,10 +31,11 @@ public class CreateEvent extends AppCompatActivity {
     EditText eventTitle;
     EditText eventOrganizer;
     EditText eventDescription;
-    EditText eventDate;
-    EditText eventTime;
+    TextView eventDate;
+    TextView eventTime;
     EditText eventPrice;
     MapView map;
+    Dialog dialog;
     Toolbar toolbar;
 
     SQLiteDatabase db;
@@ -38,8 +47,20 @@ public class CreateEvent extends AppCompatActivity {
         eventTitle = (EditText) findViewById(R.id.eventTitleText);
         eventOrganizer = (EditText) findViewById(R.id.eventOrganizerText);
         eventDescription = (EditText) findViewById(R.id.eventDescriptionText);
-        eventDate = (EditText) findViewById(R.id.editTextDate);
-        eventTime = (EditText) findViewById(R.id.editTextTime);
+        eventDate = (TextView) findViewById(R.id.editTextDate);
+        eventDate.setOnClickListener(  new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createDateDialog();
+            }
+        });
+        eventTime = (TextView) findViewById(R.id.editTextTime);
+        eventTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createTimeDialog();
+            }
+        });
         eventPrice = (EditText) findViewById(R.id.priceText);
         map = findViewById(R.id.mapView);
 
@@ -52,6 +73,55 @@ public class CreateEvent extends AppCompatActivity {
 
     }
 
+    private void createTimeDialog() {
+        final Calendar now = Calendar.getInstance();
+        int hour = now.get(Calendar.HOUR_OF_DAY);
+        int minute = now.get(Calendar.MINUTE);
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                boolean isPM = hourOfDay > 12;
+                if(isPM)
+                    hourOfDay-=12;
+                String minute_text = minute<10 ? "0" +String.valueOf(minute):String.valueOf(minute);
+                eventTime.setText(createTime(String.valueOf(hourOfDay), minute_text, (isPM ? " pm": "am")));
+            }
+        }, hour, minute, false);
+
+        timePickerDialog.show();
+    }
+
+    public String createTime(String hour, String minute, String am_or_pm){
+        return hour + ":" + minute + am_or_pm;
+    }
+    private void createDateDialog() {
+        dialog = new Dialog(CreateEvent.this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        dialog.setContentView(inflater.inflate(R.layout.datepicker,null));
+        DatePicker datePicker = dialog.findViewById(R.id.dateicker_datepciker);
+        Button ok_button = dialog.findViewById(R.id.datepicker_ok_button);
+        ok_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDateText(datePicker);
+            }
+        });
+
+        ok_button.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                setDateText(datePicker);
+            }
+        });
+        dialog.show();
+    }
+    public void setDateText(DatePicker datePicker){
+        int month = datePicker.getMonth() + 1; //add +1, because getMonth() returns values from 0 - 11
+        String st = datePicker.getYear() + "-" + month + "-" + datePicker.getDayOfMonth();
+        eventDate.setText(st);
+        dialog.dismiss();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -62,7 +132,7 @@ public class CreateEvent extends AppCompatActivity {
     public void createEvent(View view){
         Map<String, String> map = new HashMap<>();
         map.put("title", eventTitle.getText().toString());
-        map.put("organizer_id", eventOrganizer.getText().toString());
+        map.put("organizer", eventOrganizer.getText().toString());
         map.put("description", eventDescription.getText().toString());
         map.put("time", eventTime.getText().toString());
         map.put("date", eventDate.getText().toString());
