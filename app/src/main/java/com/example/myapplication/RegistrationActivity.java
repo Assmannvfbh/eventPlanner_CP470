@@ -15,6 +15,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -219,7 +220,7 @@ public class RegistrationActivity extends AppCompatActivity {
             super.onPostExecute(integer);
             if (integer.equals(USER_CREATED)) {
                 Toast.makeText(RegistrationActivity.this, "Registration successful!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
+                Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
             else if(integer.equals(ENTRY_ERROR)){

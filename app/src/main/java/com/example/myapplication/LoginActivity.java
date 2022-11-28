@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     SQLiteDatabase database;
     Button loginButton;
     ProgressBar progressBar;
+    UserData userData;
 
 
     @Override
@@ -94,18 +95,30 @@ public class LoginActivity extends AppCompatActivity {
         final Integer LOGIN_SUCESSFULL = 1;
         final Integer LOGIN_FAILURE = -1;
 
+
         @Override
         protected Integer doInBackground(Map<String, String>... maps) {
 
             Map<String, String> entries = maps[0];
             String[] parameters = new String[2];
             parameters[0] = entries.get("username");
-            parameters[1] = entries.get("password");;
+            parameters[1] = entries.get("password");
 
             Cursor cursor = database.rawQuery("SELECT * FROM " + RegisterService.TABLE_NAME + " WHERE USERNAME = ? AND PASSWORD = ?",parameters);
             cursor.moveToFirst();
+            publishProgress(25);
 
             if(cursor.getCount() > 0){
+                //populating UserData singleton
+                UserData.getUserData().setUsername(cursor.getString(0));
+                UserData.getUserData().setEmail(cursor.getString(1));
+                UserData.getUserData().setName(cursor.getString(3));
+                publishProgress(50);
+                UserData.getUserData().setSurname(cursor.getString(4));
+                UserData.getUserData().setDateOfBirth(cursor.getString(5));
+                publishProgress(100);
+
+                String string = UserData.getUserData().getUsername();
                 return LOGIN_SUCESSFULL;
             }
             else {
