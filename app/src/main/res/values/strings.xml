@@ -32,4 +32,7 @@
 
 
     <string name="registration_register">register</string>
+    <string name="save">Save</string>
+    <string name="new_task">New Task</string>
+    <string name="tasks">Tasks</string>
 </resources>

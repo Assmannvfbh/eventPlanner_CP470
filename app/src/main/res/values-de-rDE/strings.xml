@@ -17,5 +17,8 @@
     <string name="create_event">Event erstellen</string>
     <string name="location">Ort:</string>
     <string name="event_name">Event Name</string>
+    <string name="save">Save</string>
+    <string name="new_task">New Task</string>
+    <string name="tasks">Tasks</string>
 
 </resources>
