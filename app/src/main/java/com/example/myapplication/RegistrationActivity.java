@@ -231,15 +231,15 @@ public class RegistrationActivity extends AppCompatActivity {
         protected void onPostExecute(Integer integer) {
             super.onPostExecute(integer);
             if (integer.equals(USER_CREATED)) {
-                Toast.makeText(RegistrationActivity.this, "Registration successful!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegistrationActivity.this, getResources().getString(R.string.registration_suc), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
             else if(integer.equals(ENTRY_ERROR)){
-                Toast.makeText(RegistrationActivity.this, "Password or Email not valid, please try again", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegistrationActivity.this, getResources().getString(R.string.registration_pass_invalid), Toast.LENGTH_SHORT).show();
             }
             else if(integer.equals(USERNAME_EXISTS)){
-                Toast.makeText(RegistrationActivity.this, "Username already exists", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegistrationActivity.this, getResources().getString(R.string.registration_usern_exists), Toast.LENGTH_SHORT).show();
             }
         }
 
