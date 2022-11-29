@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     ImageView profile;
     ImageView Event;
+    ImageView Party_list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         setupLayout();
         profile = (ImageView) findViewById(R.id.profileIcon);
         Event = (ImageView) findViewById(R.id.EventIcon);
+        Party_list = (ImageView) findViewById(R.id.homeIcon);
+
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //here
+
+        Party_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent createPartyList = new Intent(MainActivity.this,partyList.class);
+                startActivity(createPartyList);
+            }
+        });
     }
 
     @Override
