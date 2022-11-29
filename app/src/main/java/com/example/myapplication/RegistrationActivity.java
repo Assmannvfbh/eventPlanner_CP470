@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -149,6 +150,17 @@ public class RegistrationActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
+            //Creating shared preference
+            SharedPreferences sharedpref = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+            SharedPreferences.Editor myEdit = sharedpref.edit();
+            myEdit.putString("username", usernameTextField.getText().toString());
+            myEdit.putString("email", emailTextField.getText().toString());
+            myEdit.putString("password", passwordTextField.getText().toString());
+            myEdit.putString("passwordRepeat", passwordRepeatTextField.getText().toString());
+            myEdit.putString("forename", nameTextField.getText().toString());
+            myEdit.putString("surname", surnameTextField.getText().toString());
+            myEdit.putString("dateOfBirth", birthday.getText().toString());
+            myEdit.commit();
 
             //TODO: Check Email field for duplicates, password parity validation
             Map<String, String> entries = new HashMap<>();
