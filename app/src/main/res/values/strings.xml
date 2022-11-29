@@ -33,4 +33,5 @@
 
     <string name="profile_update">Update</string>
     <string name="registration_register">register</string>
+    <string name="title_activity_map">Map</string>
 </resources>
