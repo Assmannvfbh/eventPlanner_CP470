@@ -8,6 +8,9 @@ import android.os.AsyncTask;
 
 import androidx.annotation.Nullable;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class EventJoinService extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Test1_Database";
@@ -43,21 +46,21 @@ public class EventJoinService extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
-    public boolean joinEvent(int eventID){
+    public boolean joinEvent(int eventID, String username){
         db = super.getWritableDatabase();
         EventInteraction eventInteraction = new EventInteraction(JOIN_EVENT);
-        eventInteraction.execute(eventID);
+        eventInteraction.execute(String.valueOf(eventID), username);
         return false;
     }
 
-    public boolean leaveEvent(int eventID){
+    public boolean leaveEvent(int eventID, String username){
         db = super.getWritableDatabase();
         EventInteraction eventInteraction = new EventInteraction(LEAVE_EVENT);
-        eventInteraction.execute(eventID);
+        eventInteraction.execute(String.valueOf(eventID), username);
         return false;
     }
 
-    public class EventInteraction extends AsyncTask<Integer, Integer, Integer>{
+    public class EventInteraction extends AsyncTask<String, Integer, Integer>{
 
         public final int JOINED_EVENT = 1;
         public final int LEFT_EVENT = 0;
@@ -69,11 +72,12 @@ public class EventJoinService extends SQLiteOpenHelper {
         }
 
         @Override
-        protected Integer doInBackground(Integer... integers) {
+        protected Integer doInBackground(String... strings) {
             if(action == JOIN_EVENT){
                 ContentValues values = new ContentValues();
-                values.put(USERNAME,UserData.getUserData().getUsername());
-                int eventId = integers[0];
+                String eventId = strings[0];
+                String username = strings[1];
+                values.put(USERNAME,username);
                 values.put(EVENT_ID, eventId);
 
                 db.insert(TABLE_NAME,null, values);
@@ -81,8 +85,8 @@ public class EventJoinService extends SQLiteOpenHelper {
             }
             else if(action == LEAVE_EVENT){
                 String[] array = new String[2];
-                array[0] = UserData.getUserData().getUsername();
-                array[1] = String.valueOf(integers[0]);
+                array[0] = strings[1]; //username
+                array[1] = String.valueOf(strings[0]); //eventID
                 db.delete(TABLE_NAME, USERNAME + " = ? AND " + EVENT_ID + " = ?", array );
                 return LEFT_EVENT;
             }

@@ -33,4 +33,7 @@
 
 
     <string name="registration_register">register</string>
+    <string name="registration_suc">Registration successful!</string>
+    <string name="registration_pass_invalid">Password or Email not valid, please try again.</string>
+    <string name="registration_usern_exists">Username already exists</string>
 </resources>
