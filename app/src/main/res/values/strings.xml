@@ -31,6 +31,6 @@
     <string name="time_hint">hh:mm</string>
     <string name="registration_help">Please enter a valid email and a username/password of your choice. About: Niklas Aßmann and (Enter Name), 1.0 </string>
 
-
+    <string name="profile_update">Update</string>
     <string name="registration_register">register</string>
 </resources>
