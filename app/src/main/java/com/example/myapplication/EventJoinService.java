@@ -11,6 +11,11 @@ import androidx.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class creates a table to map the usernames with eventID's. Additionally it provides two methods
+ * to insert and delete data to this table. This class implements the joi/leave course functionality
+ * of the app
+ */
 public class EventJoinService extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Test1_Database";
