@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,7 +16,8 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     ImageView profile;
     ImageView Event;
-    ImageView map;
+    Button eventList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,20 +25,11 @@ public class MainActivity extends AppCompatActivity {
         setupLayout();
         profile = (ImageView) findViewById(R.id.profileIcon);
         Event = (ImageView) findViewById(R.id.EventIcon);
-        map = (ImageView) findViewById(R.id.MapIcon);
-
-        map.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent mapIntent = new Intent(MainActivity.this, MapView.class);
-                startActivity(mapIntent);
-            }
-        });
-
+        eventList= findViewById(R.id.ToDoList);
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent profileIntent = new Intent(MainActivity.this, Profile.class);
+                Intent profileIntent = new Intent(MainActivity.this, RegisterService.class);
                 startActivity(profileIntent);
             }
         });
@@ -49,6 +42,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //here
+
+        eventList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(MainActivity.this, EventToDoList.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override

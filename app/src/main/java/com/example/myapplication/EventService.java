@@ -16,6 +16,7 @@ public class EventService extends RegisterService {
     public static final String DATE = "DATE";
     public static final String TIME = "TIME";
     public static final String PRICE = "PRICE";
+    public static final String EVENTTASKLIST = "TASKLIST";
 
 
     private static final String DATABASE_CREATE = "create table if not exists "

@@ -17,14 +17,9 @@
     <string name="create_event">Event erstellen</string>
     <string name="location">Ort:</string>
     <string name="event_name">Event Name</string>
-    <string name="login_signIn">Registrierung</string>
-    <string name="organizer">Veranstalter</string>
-    <string name="first_name">Vorname</string>
-    <string name="last_name">Nachname</string>
-    <string name="Email">E-Mail</string>
-    <string name="registration_register">regstrieren</string>
-    <string name="registration_suc">Registrierung erfolgreich</string>
-    <string name="registration_usern_exists">Benutzer bereits existent</string>
-    <string name="registration_pass_invalid">Passwort oder E-Mail nicht gültig, bitte erneut versuchen.</string>
+    <string name="save">Save</string>
+    <string name="new_task">New Task</string>
+    <string name="tasks">Tasks</string>
+    <string name="list_of_tasks">List of Tasks:</string>
 
 </resources>
