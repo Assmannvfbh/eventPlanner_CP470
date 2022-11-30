@@ -9,7 +9,10 @@
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_registration.xml" value="0.25" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_to_do_list.xml" value="0.25" />
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/datepicker.xml" value="0.25" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/party_row.xml" value="0.25" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/task_item.xml" value="0.25" />
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/menu/login_menu.xml" value="0.25" />
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/menu/standard_menu.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_create_event.xml" value="0.24509606461282366" />
@@ -19,5 +22,5 @@
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
 </project>

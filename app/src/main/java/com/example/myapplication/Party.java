@@ -2,9 +2,19 @@ package com.example.myapplication;
 
 public class Party {
     private String party_name;
+    private int ID;
 
-    public Party(String party_name) {
+    public Party(String party_name, int id) {
         this.party_name = party_name;
+        this.ID = id;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getParty_name() {

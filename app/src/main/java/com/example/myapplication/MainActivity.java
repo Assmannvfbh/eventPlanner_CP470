@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         Party_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent createPartyList = new Intent(MainActivity.this,partyList.class);
+                Intent createPartyList = new Intent(MainActivity.this, PartyListActivity.class);
                 startActivity(createPartyList);
             }
         });

@@ -4,6 +4,10 @@ package com.example.myapplication;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+/**
+ * This class is designed as singleton. It holds all userdata initialized after the login
+ * to enable easy access.
+ */
 //designed as singleton
 public class UserData {
 
