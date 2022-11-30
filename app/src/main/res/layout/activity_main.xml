@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/homeIcon"
         android:layout_marginLeft="75dp"
-        android:text="Home" />
+        android:text="Event List" />
 
     <TextView
         android:id="@+id/profileLabel"
