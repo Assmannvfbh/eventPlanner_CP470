@@ -23,14 +23,19 @@
     <string name="create_event">Create Event</string>
     <string name="location">Location:</string>
     <string name="event_name">Event Name</string>
+    <string name="profile_update">OK</string>
+    <string name="time_hint">Time</string>
 
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="Email">E-mail</string>
     <string name="DOB">YYYY-MM-DD</string>
-    <string name="time_hint">hh:mm</string>
     <string name="registration_help">Please enter a valid email and a username/password of your choice. About: Niklas Aßmann and (Enter Name), 1.0 </string>
 
-    <string name="profile_update">Update</string>
+
     <string name="registration_register">register</string>
+    <string name="save">Save</string>
+    <string name="new_task">New Task</string>
+    <string name="tasks">Tasks</string>
+    <string name="list_of_tasks">List of Tasks:</string>
 </resources>
