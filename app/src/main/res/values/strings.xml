@@ -23,6 +23,8 @@
     <string name="create_event">Create Event</string>
     <string name="location">Location:</string>
     <string name="event_name">Event Name</string>
+    <string name="profile_update">OK</string>
+    <string name="time_hint">Time</string>
 
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
