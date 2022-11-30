@@ -5,7 +5,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".EventToDoList">
-<TextView
+<EditText
     android:id="@+id/taskText"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -22,10 +22,10 @@ tools:context=".EventToDoList">
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="62dp"
-        android:layout_marginEnd="92dp"
-        android:layout_marginBottom="620dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="111dp"
+        android:layout_marginBottom="594dp"
         android:buttonTint="@color/primary"
         android:minHeight="48dp"
         tools:ignore="TouchTargetSizeCheck"

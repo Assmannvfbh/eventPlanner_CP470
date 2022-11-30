@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     ImageView profile;
     ImageView Event;
-    Button eventList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
         setupLayout();
         profile = (ImageView) findViewById(R.id.profileIcon);
         Event = (ImageView) findViewById(R.id.EventIcon);
-        eventList= findViewById(R.id.ToDoList);
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
