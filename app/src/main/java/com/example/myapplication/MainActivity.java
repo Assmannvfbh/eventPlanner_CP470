@@ -43,13 +43,6 @@ public class MainActivity extends AppCompatActivity {
         });
         //here
 
-        eventList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent(MainActivity.this, EventToDoList.class);
-                startActivity(intent);
-            }
-        });
 
     }
 
