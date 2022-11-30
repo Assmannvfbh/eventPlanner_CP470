@@ -21,7 +21,7 @@ public class EventService extends RegisterService {
 
     private static final String DATABASE_CREATE = "create table if not exists "
             + TABLE_NAME + " ("
-            + ID + " INTEGER primary key autoincrement, "
+            + ID + " INTEGER primary key, "
             + ORGANIZER + " text not null, "
             + TITLE + " text not null, "
             + DESCRIPTION + " text not null, "
