@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView map;
     Button eventList;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         setupLayout();
         profile = (ImageView) findViewById(R.id.profileIcon);
         Event = (ImageView) findViewById(R.id.EventIcon);
-        eventList= findViewById(R.id.ToDoList);
         map = (ImageView) findViewById(R.id.MapIcon);
 
         map.setOnClickListener(new View.OnClickListener() {
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(mapIntent);
             }
         });
+
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,15 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(createEvent);
             }
         });
-        //here
+      
 
-        eventList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent(MainActivity.this, EventToDoList.class);
-                startActivity(intent);
-            }
-        });
 
     }
 
