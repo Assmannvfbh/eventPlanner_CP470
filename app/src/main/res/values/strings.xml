@@ -35,4 +35,5 @@
     <string name="save">Save</string>
     <string name="new_task">New Task</string>
     <string name="tasks">Tasks</string>
+    <string name="list_of_tasks">List of Tasks:</string>
 </resources>

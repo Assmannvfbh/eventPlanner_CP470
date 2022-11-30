@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
         eventList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent tasklist= new Intent(MainActivity.this, EventToDoList.class);
-                startActivity(tasklist);
+                Intent intent= new Intent(MainActivity.this, EventToDoList.class);
+                startActivity(intent);
             }
         });
 

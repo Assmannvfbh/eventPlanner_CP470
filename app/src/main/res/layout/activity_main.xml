@@ -115,7 +115,6 @@
         android:layout_marginEnd="137dp"
         android:layout_marginBottom="121dp"
         android:backgroundTintMode="add"
-        android:onClick="EventToDoList"
         android:text="EventToDoList"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
