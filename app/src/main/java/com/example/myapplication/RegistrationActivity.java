@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -15,6 +16,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,9 +26,12 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
+
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,7 +46,7 @@ public class RegistrationActivity extends AppCompatActivity {
     EditText passwordRepeatTextField;
     EditText nameTextField;
     EditText surnameTextField;
-    EditText birthday;
+    TextView birthday;
     Dialog dialog;
     ImageView profilePic;
     Button registerButton;
@@ -67,7 +72,6 @@ public class RegistrationActivity extends AppCompatActivity {
         surnameTextField = findViewById(R.id.registration_surname_input);
         nameTextField = findViewById(R.id.registration_firstname_input);
         birthday = findViewById(R.id.registration_DO2);
-        birthday.setInputType(InputType.TYPE_NULL);
         birthday.setOnClickListener(new dateOfBirthListener());
 
         profilePic = (ImageView) findViewById(R.id.profile_photo);
@@ -117,7 +121,8 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     public void setDateText(DatePicker datePicker){
-        String st = datePicker.getYear() + "-" + datePicker.getMonth() + "-" + datePicker.getDayOfMonth();
+        int month = datePicker.getMonth() + 1; //add +1, because getMonth() returns values from 0 - 11
+        String st = datePicker.getYear() + "-" + month + "-" + datePicker.getDayOfMonth();
         birthday.setText(st);
         dialog.dismiss();
     }
@@ -145,6 +150,17 @@ public class RegistrationActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
+            //Creating shared preference
+            SharedPreferences sharedpref = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+            SharedPreferences.Editor myEdit = sharedpref.edit();
+            myEdit.putString("username", usernameTextField.getText().toString());
+            myEdit.putString("email", emailTextField.getText().toString());
+            myEdit.putString("password", passwordTextField.getText().toString());
+            myEdit.putString("passwordRepeat", passwordRepeatTextField.getText().toString());
+            myEdit.putString("forename", nameTextField.getText().toString());
+            myEdit.putString("surname", surnameTextField.getText().toString());
+            myEdit.putString("dateOfBirth", birthday.getText().toString());
+            myEdit.commit();
 
             //TODO: Check Email field for duplicates, password parity validation
             Map<String, String> entries = new HashMap<>();
@@ -215,15 +231,15 @@ public class RegistrationActivity extends AppCompatActivity {
         protected void onPostExecute(Integer integer) {
             super.onPostExecute(integer);
             if (integer.equals(USER_CREATED)) {
-                Toast.makeText(RegistrationActivity.this, "Registering successful!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
+                //Toast.makeText(RegistrationActivity.this, getResources().getString(R.string.registration_suc), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
             else if(integer.equals(ENTRY_ERROR)){
-                Toast.makeText(RegistrationActivity.this, "Password or Email not valid, please try again", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RegistrationActivity.this, getResources().getString(R.string.registration_pass_invalid), Toast.LENGTH_SHORT).show();
             }
             else if(integer.equals(USERNAME_EXISTS)){
-                Toast.makeText(RegistrationActivity.this, "Username already exists", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RegistrationActivity.this, getResources().getString(R.string.registration_usern_exists), Toast.LENGTH_SHORT).show();
             }
         }
 
