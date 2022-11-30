@@ -16,9 +16,11 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     ImageView profile;
     ImageView Event;
+
+    ImageView Party_list;
+
     ImageView map;
     Button eventList;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
         setupLayout();
         profile = (ImageView) findViewById(R.id.profileIcon);
         Event = (ImageView) findViewById(R.id.EventIcon);
+
+        Party_list = (ImageView) findViewById(R.id.homeIcon);
+
         map = (ImageView) findViewById(R.id.MapIcon);
 
         map.setOnClickListener(new View.OnClickListener() {
@@ -36,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(mapIntent);
             }
         });
+
 
 
         profile.setOnClickListener(new View.OnClickListener() {
@@ -53,8 +59,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(createEvent);
             }
         });
-      
 
+        //here
+
+        Party_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent createPartyList = new Intent(MainActivity.this,partyList.class);
+                startActivity(createPartyList);
+            }
+        });
 
     }
 
