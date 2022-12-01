@@ -3,7 +3,6 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
@@ -14,12 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.net.InetSocketAddress;
 
 public class EventDetails extends AppCompatActivity{
-    EventService eventService;
+    DatabaseService databaseService;
     SQLiteDatabase db;
     TextView title;
     TextView organizer;
@@ -35,6 +31,8 @@ public class EventDetails extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        databaseService = new DatabaseService(this);
+        db = databaseService.getWritableDatabase();
         setContentView(R.layout.activity_event_details);
         title = this.findViewById(R.id.eventDetails_title);
         organizer = this.findViewById(R.id.eventDetails_organizer);
@@ -51,9 +49,7 @@ public class EventDetails extends AppCompatActivity{
                 loader.execute();
             }
         });
-        eventService = new EventService(this);
         id = getIntent().getIntExtra("id", -1);
-        db = eventService.getWritableDatabase();
         checkAdmin();
         EventDetailLoader loader = new EventDetailLoader(0);
         loader.execute(String.valueOf(id));
@@ -61,6 +57,7 @@ public class EventDetails extends AppCompatActivity{
 
         toolbar.setTitle(R.string.eventDetail_toolbar_header);
         setSupportActionBar(toolbar);
+
     }
 
     @Override
@@ -75,17 +72,10 @@ public class EventDetails extends AppCompatActivity{
         loader.execute(UserData.getUserData().getUsername());
     }
 
-    public void checkMember(){
-        if(admin){
-            joinButton.setVisibility(Button.INVISIBLE);
-        }
-
-    }
 
 
 
     public class EventDetailLoader extends AsyncTask<String, Integer, Integer>{
-
 
         int mode;
 
@@ -96,18 +86,18 @@ public class EventDetails extends AppCompatActivity{
         @Override
         protected Integer doInBackground(String... strings) {
             if(mode == 0) {
-                Cursor cursor = db.rawQuery("SELECT * FROM " + EventService.TABLE_NAME + " WHERE ID = ?", new String[]{strings[0]});
+                Cursor cursor = db.rawQuery("SELECT * FROM " + DatabaseService.EVENT_TABLE_NAME + " WHERE ID = ?", new String[]{strings[0]});
                 cursor.moveToFirst();
-                title.setText(cursor.getString(cursor.getColumnIndexOrThrow(EventService.TITLE)));
-                organizer.setText(cursor.getString(cursor.getColumnIndexOrThrow(EventService.ORGANIZER)));
-                description.setText(cursor.getString(cursor.getColumnIndexOrThrow(EventService.DESCRIPTION)));
-                date_time.setText(cursor.getString(cursor.getColumnIndexOrThrow(EventService.DATE)));
-                location.setText(cursor.getString(cursor.getColumnIndexOrThrow(EventService.LOCATION)));
+                title.setText(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseService.TITLE)));
+                organizer.setText(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseService.ORGANIZER)));
+                description.setText(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseService.DESCRIPTION)));
+                date_time.setText(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseService.DATE)));
+                location.setText(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseService.LOCATION)));
                 cursor.close();
                 return 0;
             }
             else if(mode == 1){
-                Cursor cursor = db.rawQuery("SELECT * FROM " + EventService.TABLE_NAME + " WHERE ADMIN = ?", new String[]{strings[0]});
+                Cursor cursor = db.rawQuery("SELECT * FROM " + DatabaseService.EVENT_TABLE_NAME + " WHERE ADMIN = ?", new String[]{strings[0]});
                 cursor.moveToFirst();
                 if(cursor.getCount() > 0){
                     return 1;
@@ -116,7 +106,7 @@ public class EventDetails extends AppCompatActivity{
                 return -1;
             }
             else if (mode == 2){
-                db.delete(EventService.TABLE_NAME, EventService.ID + " = ?", new String[]{String.valueOf(id)});
+                db.delete(DatabaseService.EVENT_TABLE_NAME, DatabaseService.ID + " = ?", new String[]{String.valueOf(id)});
                 return 2;
             }
             return null;

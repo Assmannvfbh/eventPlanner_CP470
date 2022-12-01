@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -15,8 +14,6 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.InputType;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,8 +27,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
-
-import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -60,7 +55,7 @@ public class RegistrationActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.registration_toolbar);
         setSupportActionBar(toolbar);
 
-        RegisterService service = new RegisterService(this);
+        DatabaseService service = new DatabaseService(this);
         database = service.getWritableDatabase();
 
         registerButton = findViewById(R.id.registration_register_button);
@@ -207,21 +202,21 @@ public class RegistrationActivity extends AppCompatActivity {
             String[] usernameArray = new String[1];
             usernameArray[0] = entries.get("username");
 
-            Cursor cursorForUsername = database.rawQuery("Select USERNAME from " + RegisterService.TABLE_NAME + " WHERE USERNAME = ?", usernameArray);
+            Cursor cursorForUsername = database.rawQuery("Select USERNAME from " + DatabaseService.TEST_TABLE_NAME + " WHERE USERNAME = ?", usernameArray);
             int rows = cursorForUsername.getCount();
             if (rows > 0) {
                 return USERNAME_EXISTS;
             }
             else if (android.util.Patterns.EMAIL_ADDRESS.matcher(entries.get("email")).matches() && entries.get("password").equals(entries.get("passwordRepeat"))) {
                 ContentValues contentValues = new ContentValues();
-                contentValues.put(RegisterService.USERNAME, entries.get("username"));
-                contentValues.put(RegisterService.EMAIL, entries.get("email"));
-                contentValues.put(RegisterService.PASSWORD, entries.get("password"));
-                contentValues.put(RegisterService.DATE_OF_BIRTH, entries.get("dateOfBirth"));
-                contentValues.put(RegisterService.NAME, entries.get("forename"));
-                contentValues.put(RegisterService.SURNAME, entries.get("surname"));
+                contentValues.put(DatabaseService.USERNAME, entries.get("username"));
+                contentValues.put(DatabaseService.EMAIL, entries.get("email"));
+                contentValues.put(DatabaseService.PASSWORD, entries.get("password"));
+                contentValues.put(DatabaseService.DATE_OF_BIRTH, entries.get("dateOfBirth"));
+                contentValues.put(DatabaseService.NAME, entries.get("forename"));
+                contentValues.put(DatabaseService.SURNAME, entries.get("surname"));
 
-                database.insert(RegisterService.TABLE_NAME, null, contentValues);
+                database.insert(DatabaseService.TEST_TABLE_NAME, null, contentValues);
                 return USER_CREATED;
             }
             return ENTRY_ERROR;

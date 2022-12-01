@@ -22,7 +22,6 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -50,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new loginListener());
 
 
-        RegisterService service = new RegisterService(this);
+        DatabaseService service = new DatabaseService(this);
         database = service.getWritableDatabase();
     }
 
@@ -104,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
             parameters[0] = entries.get("username");
             parameters[1] = entries.get("password");
 
-            Cursor cursor = database.rawQuery("SELECT * FROM " + RegisterService.TABLE_NAME + " WHERE USERNAME = ? AND PASSWORD = ?",parameters);
+            Cursor cursor = database.rawQuery("SELECT * FROM " + DatabaseService.TEST_TABLE_NAME + " WHERE USERNAME = ? AND PASSWORD = ?",parameters);
             cursor.moveToFirst();
             publishProgress(25);
 

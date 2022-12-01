@@ -67,9 +67,8 @@ public class CreateEvent extends AppCompatActivity {
         eventPrice = (EditText) findViewById(R.id.priceText);
         map = findViewById(R.id.mapView);
 
-        EventService service = new EventService(this);
+        DatabaseService service = new DatabaseService(this);
         db = service.getWritableDatabase();
-        service.onCreate(db);
 
         toolbar = findViewById(R.id.createEvent_toolbar);
         setSupportActionBar(toolbar);
@@ -153,17 +152,17 @@ public class CreateEvent extends AppCompatActivity {
         protected Integer doInBackground(Map<String, String>... maps) {
             Map<String, String> entries = maps[0];
             ContentValues contentValues = new ContentValues();
-            contentValues.put(EventService.TITLE, entries.get("title"));
-            contentValues.put(EventService.ORGANIZER, entries.get("organizer"));
-            contentValues.put(EventService.DESCRIPTION, entries.get("description"));
-            contentValues.put(EventService.LOCATION, entries.get("location"));
-            contentValues.put(EventService.PRICE, entries.get("price"));
-            contentValues.put(EventService.DATE, entries.get("date"));
-            contentValues.put(EventService.TIME, entries.get("time"));
-            contentValues.put(EventService.ADMIN, UserData.getUserData().getUsername());
+            contentValues.put(DatabaseService.TITLE, entries.get("title"));
+            contentValues.put(DatabaseService.ORGANIZER, entries.get("organizer"));
+            contentValues.put(DatabaseService.DESCRIPTION, entries.get("description"));
+            contentValues.put(DatabaseService.LOCATION, entries.get("location"));
+            contentValues.put(DatabaseService.PRICE, entries.get("price"));
+            contentValues.put(DatabaseService.DATE, entries.get("date"));
+            contentValues.put(DatabaseService.TIME, entries.get("time"));
+            contentValues.put(DatabaseService.ADMIN, UserData.getUserData().getUsername());
 
             try {
-                db.insert(EventService.TABLE_NAME, null, contentValues);
+                db.insert(DatabaseService.EVENT_TABLE_NAME, null, contentValues);
                 return 1;
             } catch (Exception e) {
                 Log.e(this.getClass().getName(), e.getMessage());

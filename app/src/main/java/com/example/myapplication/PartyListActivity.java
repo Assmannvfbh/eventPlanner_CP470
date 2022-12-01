@@ -24,7 +24,7 @@ public class PartyListActivity extends AppCompatActivity {
 
     private ArrayList<Party> partylist;
     private RecyclerView recyclerView;
-    protected EventService eventService;
+    protected DatabaseService databaseService;
     protected SQLiteDatabase db;
     View view;
 
@@ -42,8 +42,8 @@ public class PartyListActivity extends AppCompatActivity {
         toolbar.setTitle(getResources().getString(R.string.eventList_toolbar_header));
 
         recyclerView = findViewById(R.id.recycler_id);
-        eventService = new EventService(this);
-        db = eventService.getReadableDatabase();
+        databaseService = new DatabaseService(this);
+        db = databaseService.getReadableDatabase();
 
 //        if(getIntent().hasExtra("update")){
 //            Snackbar.make(recyclerView,getIntent().getStringExtra("update"),Snackbar.LENGTH_SHORT).show();
@@ -87,7 +87,7 @@ public class PartyListActivity extends AppCompatActivity {
 
         @Override
         protected Integer doInBackground(Integer... integers) {
-            Cursor cursor = db.rawQuery("SELECT ID, TITLE FROM " + EventService.TABLE_NAME,null);
+            Cursor cursor = db.rawQuery("SELECT ID, TITLE FROM " + DatabaseService.EVENT_TABLE_NAME,null);
             cursor.moveToFirst();
             while(!cursor.isAfterLast()) {
                 partylist.add(new Party(cursor.getString(1), cursor.getInt(0)));
