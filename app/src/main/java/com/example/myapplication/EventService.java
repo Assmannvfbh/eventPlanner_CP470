@@ -16,6 +16,7 @@ public class EventService extends RegisterService {
     public static final String DATE = "DATE";
     public static final String TIME = "TIME";
     public static final String PRICE = "PRICE";
+    public static final String ADMIN = "ADMIN";
     public static final String EVENTTASKLIST = "TASKLIST";
 
 
@@ -28,7 +29,8 @@ public class EventService extends RegisterService {
             + LOCATION + " text, "
             + DATE + " text not null, "
             + TIME + " text not null, "
-            + PRICE + " text);";
+            + PRICE + " text, "
+            + ADMIN + " text not null);";
 
     public EventService(Context ctx) {
         super(ctx);

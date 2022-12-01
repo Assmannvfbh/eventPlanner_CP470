@@ -38,5 +38,8 @@
     <string name="new_task">New Task</string>
     <string name="tasks">Tasks</string>
     <string name="list_of_tasks">List of Tasks:</string>
+    <string name="snackbar_event_deleted">Event deleted</string>
+
     <string name="eventDetail_toolbar_header">Event Details</string>
+    <string name="eventList_toolbar_header">Events</string>
 </resources>

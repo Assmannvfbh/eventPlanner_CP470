@@ -160,6 +160,7 @@ public class CreateEvent extends AppCompatActivity {
             contentValues.put(EventService.PRICE, entries.get("price"));
             contentValues.put(EventService.DATE, entries.get("date"));
             contentValues.put(EventService.TIME, entries.get("time"));
+            contentValues.put(EventService.ADMIN, UserData.getUserData().getUsername());
 
             try {
                 db.insert(EventService.TABLE_NAME, null, contentValues);

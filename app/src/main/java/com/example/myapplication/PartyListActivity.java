@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +10,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Layout;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.View;
+import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -18,6 +26,9 @@ public class PartyListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     protected EventService eventService;
     protected SQLiteDatabase db;
+    View view;
+
+    Toolbar toolbar;
 
 
     @Override
@@ -25,15 +36,31 @@ public class PartyListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_party_list);
 
+
+        toolbar = this.findViewById(R.id.eventList_toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle(getResources().getString(R.string.eventList_toolbar_header));
+
         recyclerView = findViewById(R.id.recycler_id);
         eventService = new EventService(this);
         db = eventService.getReadableDatabase();
+
+        if(getIntent().hasExtra("update")){
+            Snackbar.make(recyclerView,getIntent().getStringExtra("update"),Snackbar.LENGTH_SHORT).show();
+        }
 
 
         partylist = new ArrayList<>();
 
         setPartyInfo();
         setAdapter();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.standard_menu,menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
 
@@ -70,6 +97,7 @@ public class PartyListActivity extends AppCompatActivity {
                 partylist.add(new Party(cursor.getString(1), cursor.getInt(0)));
                 cursor.moveToNext();
             }
+            cursor.close();
             return null;
         }
     }
