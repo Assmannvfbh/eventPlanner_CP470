@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ public class EventDetails extends AppCompatActivity{
     TextView location;
     Toolbar toolbar;
     ImageView delete_button;
+    Button joinButton;
     boolean admin;
     int id;
 
@@ -40,7 +42,15 @@ public class EventDetails extends AppCompatActivity{
         date_time = this.findViewById(R.id.eventDetail_date_time);
         location = this.findViewById(R.id.eventDetail_location);
         delete_button = this.findViewById(R.id.eventDetail_trash);
+        joinButton = this.findViewById(R.id.eventDetails_join_button);
         delete_button.setVisibility(ImageView.INVISIBLE);
+        delete_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventDetailLoader loader = new EventDetailLoader(2);
+                loader.execute();
+            }
+        });
         eventService = new EventService(this);
         id = getIntent().getIntExtra("id", -1);
         db = eventService.getWritableDatabase();
@@ -63,6 +73,13 @@ public class EventDetails extends AppCompatActivity{
     public void checkAdmin(){
         EventDetailLoader loader = new EventDetailLoader(1);
         loader.execute(UserData.getUserData().getUsername());
+    }
+
+    public void checkMember(){
+        if(admin){
+            joinButton.setVisibility(Button.INVISIBLE);
+        }
+
     }
 
 
@@ -98,6 +115,10 @@ public class EventDetails extends AppCompatActivity{
                 cursor.close();
                 return -1;
             }
+            else if (mode == 2){
+                db.delete(EventService.TABLE_NAME, EventService.ID + " = ?", new String[]{String.valueOf(id)});
+                return 2;
+            }
             return null;
         }
 
@@ -107,16 +128,9 @@ public class EventDetails extends AppCompatActivity{
             if(integer == 1){
                 delete_button.setVisibility(ImageView.VISIBLE);
                 admin = true;
-                delete_button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        db.delete(EventService.TABLE_NAME, EventService.ID + " = ?", new String[]{String.valueOf(id)});
-                        Intent intent = new Intent(v.getContext(),PartyListActivity.class);
-                        intent.putExtra("update", getResources().getString(R.string.snackbar_event_deleted));
-                        v.getContext().startActivity(intent);
-
-                    }
-                });
+            }
+            else if (integer == 2){
+                finish();
             }
         }
     }

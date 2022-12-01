@@ -45,15 +45,22 @@ public class PartyListActivity extends AppCompatActivity {
         eventService = new EventService(this);
         db = eventService.getReadableDatabase();
 
-        if(getIntent().hasExtra("update")){
-            Snackbar.make(recyclerView,getIntent().getStringExtra("update"),Snackbar.LENGTH_SHORT).show();
-        }
+//        if(getIntent().hasExtra("update")){
+//            Snackbar.make(recyclerView,getIntent().getStringExtra("update"),Snackbar.LENGTH_SHORT).show();
+//        }
 
 
         partylist = new ArrayList<>();
 
-        setPartyInfo();
-        setAdapter();
+    }
+
+    @Override
+    protected void onStart() {
+        partylist.clear();
+        super.onStart();
+        EventLoader el = new EventLoader();
+        el.execute();
+
     }
 
     @Override
@@ -74,18 +81,7 @@ public class PartyListActivity extends AppCompatActivity {
         
     }
 
-    private void setPartyInfo() {
 
-        EventLoader el = new EventLoader();
-        el.execute();
-
-//        partylist.add(new Party("Adian's 24th birthday"));
-//        partylist.add(new Party("Amy's 27th birthday"));
-//        partylist.add(new Party("Adriana's 26th birthday"));
-//        partylist.add(new Party("Alex's 52th birthday"));
-//        partylist.add(new Party("Ryan's 23th birthday"));
-//        partylist.add(new Party("Max's 53th birthday"));
-    }
 
     public class EventLoader extends AsyncTask<Integer, Integer, Integer>{
 
@@ -99,6 +95,12 @@ public class PartyListActivity extends AppCompatActivity {
             }
             cursor.close();
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+            super.onPostExecute(integer);
+            setAdapter();
         }
     }
 }
