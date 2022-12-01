@@ -46,8 +46,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), EventDetails.class);
+                intent.putExtra("id", id);
                 v.getContext().startActivity(intent);
-                //TODO: putExtra eventID to load data from database
 
             }
         });

@@ -15,7 +15,7 @@
 
 
     <TextView
-        android:id="@+id/eventTitle"
+        android:id="@+id/eventDetails_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/title"
@@ -39,7 +39,7 @@
         app:layout_constraintVertical_bias="0.107" />
 
     <TextView
-        android:id="@+id/eventOrganizer"
+        android:id="@+id/eventDetails_organizer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/organizer"
@@ -66,7 +66,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/eventDescription"
+        android:id="@+id/eventDetails_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/description"
@@ -93,7 +93,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/eventDateTime"
+        android:id="@+id/eventDetail_date_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/date_and_time"
@@ -104,7 +104,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/eventLocation"
+        android:id="@+id/eventDetail_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/location"
@@ -172,8 +172,8 @@
         android:layout_height="48dp"
         android:orientation="horizontal"
 
-        app:layout_constraintStart_toStartOf="@+id/eventDateTime"
-        app:layout_constraintTop_toBottomOf="@+id/eventDateTime">
+        app:layout_constraintStart_toStartOf="@+id/eventDetail_date_time"
+        app:layout_constraintTop_toBottomOf="@+id/eventDetail_date_time">
 
 
         <TextView
@@ -189,7 +189,7 @@
             app:layout_constraintEnd_toStartOf="@+id/editTextTime"
             app:layout_constraintHorizontal_bias="0.348"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/eventDateTime" />
+            app:layout_constraintTop_toBottomOf="@+id/eventDetail_date_time" />
 
         <TextView
             android:id="@+id/editTextTime"
