@@ -59,7 +59,6 @@ public class RegistrationActivity extends AppCompatActivity {
         database = service.getWritableDatabase();
 
         registerButton = findViewById(R.id.registration_register_button);
-        registerButton.setOnClickListener(new registerListener());
         usernameTextField = findViewById(R.id.registration_username_input);
         emailTextField = findViewById(R.id.registration_email_input);
         passwordTextField = findViewById(R.id.registration_password_input);
@@ -77,6 +76,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 startActivityForResult(takePicture, REQUEST_IMAGE_CAPTURE);
             }
         });
+        registerButton.setOnClickListener(new registerListener());
 
 
     }
