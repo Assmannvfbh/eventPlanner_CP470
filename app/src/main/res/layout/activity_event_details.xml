@@ -116,7 +116,7 @@
             android:layout_height="50dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:text="Join Event  - 2/10 Attending" />
+            android:text="Join Event" />
 
         <ImageView
             android:id="@+id/eventDetail_trash"
