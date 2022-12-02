@@ -37,12 +37,11 @@ public class CreateEvent extends AppCompatActivity {
     TextView eventDate;
     TextView eventTime;
     EditText eventPrice;
-    MapView map;
+    //MapView map;
     Dialog dialog;
     Toolbar toolbar;
-
     SQLiteDatabase db;
-
+    EditText location;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +64,7 @@ public class CreateEvent extends AppCompatActivity {
             }
         });
         eventPrice = (EditText) findViewById(R.id.priceText);
-        map = findViewById(R.id.mapView);
+        //map = findViewById(R.id.mapView);
 
         DatabaseService service = new DatabaseService(this);
         db = service.getWritableDatabase();
@@ -73,6 +72,7 @@ public class CreateEvent extends AppCompatActivity {
         toolbar = findViewById(R.id.createEvent_toolbar);
         setSupportActionBar(toolbar);
 
+        location = (EditText) findViewById(R.id.Location);
     }
 
     private void createTimeDialog() {
@@ -138,6 +138,7 @@ public class CreateEvent extends AppCompatActivity {
         map.put("description", eventDescription.getText().toString());
         map.put("time", eventTime.getText().toString());
         map.put("date", eventDate.getText().toString());
+        map.put("location", location.getText().toString());
         map.put("price", eventPrice.getText().toString());
 
         EventQuery eventQuery = new EventQuery();
