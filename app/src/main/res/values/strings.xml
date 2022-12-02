@@ -44,4 +44,6 @@
 
     <string name="eventDetail_toolbar_header">Event Details</string>
     <string name="eventList_toolbar_header">Events</string>
+    <string name="create_event_toolbar_header">Create Event</string>
+    <string name="myEventsList_toolbar_header">My Events</string>
 </resources>

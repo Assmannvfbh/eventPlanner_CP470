@@ -17,6 +17,7 @@ public class DatabaseService extends SQLiteOpenHelper {
     public static final String NAME = "NAME";
     public static final String SURNAME = "SURNAME";
     public static final String DATE_OF_BIRTH = "DATE_OF_BIRTH";
+
     public static final String EVENT_ID = "EVENT_ID";
 
     public static final String ID = "ID";
@@ -56,6 +57,7 @@ public class DatabaseService extends SQLiteOpenHelper {
             + TIME + " text not null, "
             + PRICE + " text, "
             + ADMIN + " text not null);";
+
 
     public DatabaseService(Context ctx){
         super(ctx, DATABASE_NAME, null, 1);

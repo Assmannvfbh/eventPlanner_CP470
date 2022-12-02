@@ -128,6 +128,7 @@ public class CreateEvent extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.standard_menu,menu);
+        toolbar.setTitle(getResources().getString(R.string.create_event_toolbar_header));
         return super.onCreateOptionsMenu(menu);
     }
 

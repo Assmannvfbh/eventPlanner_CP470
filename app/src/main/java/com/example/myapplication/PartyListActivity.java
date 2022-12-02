@@ -1,11 +1,13 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
@@ -13,6 +15,7 @@ import android.os.Bundle;
 import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -39,16 +42,10 @@ public class PartyListActivity extends AppCompatActivity {
 
         toolbar = this.findViewById(R.id.eventList_toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle(getResources().getString(R.string.eventList_toolbar_header));
 
         recyclerView = findViewById(R.id.recycler_id);
         databaseService = new DatabaseService(this);
         db = databaseService.getReadableDatabase();
-
-//        if(getIntent().hasExtra("update")){
-//            Snackbar.make(recyclerView,getIntent().getStringExtra("update"),Snackbar.LENGTH_SHORT).show();
-//        }
-
 
         partylist = new ArrayList<>();
 
@@ -60,14 +57,29 @@ public class PartyListActivity extends AppCompatActivity {
         super.onStart();
         EventLoader el = new EventLoader();
         el.execute();
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.standard_menu,menu);
+        inflater.inflate(R.menu.event_details_menu,menu);
+        toolbar.setTitle(getResources().getString(R.string.eventList_toolbar_header));
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        switch(id){
+            case R.id.event_details_toolbar_about:
+                Snackbar.make(this.toolbar, getResources().getString(R.string.login_about_Niklas), Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.event_details_toolbar_plus:
+                Intent intent = new Intent(PartyListActivity.this, CreateEvent.class);
+                startActivity(intent);
+        }
+        return true;
     }
 
 
