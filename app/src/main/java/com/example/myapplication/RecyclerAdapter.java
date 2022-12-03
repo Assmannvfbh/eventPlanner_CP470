@@ -12,19 +12,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
-    private ArrayList<Party> partyList;
+    private ArrayList<Event> partyList;
 
-    public RecyclerAdapter(ArrayList<Party> partyList){
+    public RecyclerAdapter(ArrayList<Event> partyList){
         this.partyList = partyList;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         private TextView  party_name;
+        private TextView subtitle;
 
         public MyViewHolder(final View view){
             super(view);
-            party_name = view.findViewById(R.id.party_row1);
+            party_name = view.findViewById(R.id.event_row_title);
+            subtitle = view.findViewById(R.id.event_row_subtitle);
         }
 
 
@@ -41,7 +43,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     public void onBindViewHolder(@NonNull RecyclerAdapter.MyViewHolder holder, int position) {
         String name = partyList.get(position).getParty_name();
         int id = partyList.get(position).getID();
+        String organizer = partyList.get(position).getOrganizer();
         holder.party_name.setText(name);
+        holder.subtitle.setText(organizer);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

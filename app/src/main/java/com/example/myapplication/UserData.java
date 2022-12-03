@@ -70,4 +70,12 @@ public class UserData {
     public void setSurname(String surname) {
         this.surname = surname;
     }
+
+    public void clear(){
+        username = null;
+        email = null;
+        name = null;
+        surname = null;
+        dateOfBirth = null;
+    }
 }

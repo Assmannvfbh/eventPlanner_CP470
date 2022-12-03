@@ -12,7 +12,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,7 +24,7 @@ import java.util.ArrayList;
 
 public class PartyListActivity extends AppCompatActivity {
 
-    private ArrayList<Party> partylist;
+    private ArrayList<Event> partylist;
     private RecyclerView recyclerView;
     protected DatabaseService databaseService;
     protected SQLiteDatabase db;
@@ -38,7 +37,6 @@ public class PartyListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_party_list);
-
 
         toolbar = this.findViewById(R.id.eventList_toolbar);
         setSupportActionBar(toolbar);
@@ -99,10 +97,13 @@ public class PartyListActivity extends AppCompatActivity {
 
         @Override
         protected Integer doInBackground(Integer... integers) {
-            Cursor cursor = db.rawQuery("SELECT ID, TITLE FROM " + DatabaseService.EVENT_TABLE_NAME,null);
+            Cursor cursor = db.rawQuery("SELECT * FROM " + DatabaseService.EVENT_TABLE_NAME,null);
             cursor.moveToFirst();
             while(!cursor.isAfterLast()) {
-                partylist.add(new Party(cursor.getString(1), cursor.getInt(0)));
+                partylist.add(new Event(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseService.TITLE)),
+                        cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseService.ID)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(DatabaseService.ORGANIZER)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(DatabaseService.ADMIN))));
                 cursor.moveToNext();
             }
             cursor.close();

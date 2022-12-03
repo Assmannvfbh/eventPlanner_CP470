@@ -15,9 +15,9 @@ public class MainActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     ImageView profile;
-    ImageView Event;
+    ImageView myEvents;
 
-    ImageView Party_list;
+    ImageView party_list;
 
     ImageView map;
     Button eventList;
@@ -28,11 +28,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setupLayout();
         profile = (ImageView) findViewById(R.id.profileIcon);
-        Event = (ImageView) findViewById(R.id.EventIcon);
+        myEvents = (ImageView) findViewById(R.id.main_my_events_icon);
 
-        Party_list = (ImageView) findViewById(R.id.homeIcon);
+        party_list = (ImageView) findViewById(R.id.homeIcon);
 
-        map = (ImageView) findViewById(R.id.MapIcon);
+        map = (ImageView) findViewById(R.id.main_map_icon);
 
         map.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,23 +52,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Event.setOnClickListener(new View.OnClickListener() {
+        myEvents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent createEvent = new Intent(MainActivity.this, CreateEvent.class);
+                Intent createEvent = new Intent(MainActivity.this, MyEventsListActivity.class);
                 startActivity(createEvent);
             }
         });
 
         //here
 
-        Party_list.setOnClickListener(new View.OnClickListener() {
+        party_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent createPartyList = new Intent(MainActivity.this, PartyListActivity.class);
                 startActivity(createPartyList);
             }
         });
+
 
     }
 

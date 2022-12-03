@@ -1,23 +1,20 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Dialog;
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -32,7 +29,9 @@ public class EventDetails extends AppCompatActivity{
     Toolbar toolbar;
     ImageView delete_button;
     Button joinButton;
-    boolean admin;
+    Dialog dialog;
+
+    boolean isAdmin;
     boolean isMember;
     int id;
 
@@ -58,6 +57,7 @@ public class EventDetails extends AppCompatActivity{
         location = this.findViewById(R.id.eventDetail_location);
         delete_button = this.findViewById(R.id.eventDetail_trash);
         joinButton = this.findViewById(R.id.eventDetails_join_button);
+        dialog = new Dialog(this);
         joinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,12 +77,10 @@ public class EventDetails extends AppCompatActivity{
         delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventDetailLoader loader = new EventDetailLoader(DELETE_EVENT_ACTION);
-                loader.execute();
+                openDialog();
             }
         });
         id = getIntent().getIntExtra("id", -1);
-        checkAdmin();
         EventDetailLoader loader = new EventDetailLoader(POPULATE_EVENT_ACTION);
         loader.execute(String.valueOf(id));
         toolbar = findViewById(R.id.eventDetail_toolbar);
@@ -110,6 +108,31 @@ public class EventDetails extends AppCompatActivity{
         loader.execute();
     }
 
+    public void openDialog(){
+        dialog.setContentView(R.layout.dialog_delete);
+        Button okButton = dialog.findViewById(R.id.delete_dialog_ok);
+        Button cancelButton = dialog.findViewById(R.id.delete_dialog_cancel);
+        TextView text = dialog.findViewById(R.id.delete_dialog_text);
+
+        text.setText(getResources().getString(R.string.delete_dialog_text));
+
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventDetailLoader loader = new EventDetailLoader(DELETE_EVENT_ACTION);
+                loader.execute();
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
 
 
 
@@ -135,7 +158,7 @@ public class EventDetails extends AppCompatActivity{
                 return POPULATE_EVENT_ACTION;
             }
             else if(mode == 1){
-                Cursor cursor = db.rawQuery("SELECT * FROM " + DatabaseService.EVENT_TABLE_NAME + " WHERE ADMIN = ?", new String[]{strings[0]});
+                Cursor cursor = db.rawQuery("SELECT * FROM " + DatabaseService.EVENT_TABLE_NAME + " WHERE ADMIN = ? AND ID = ?", new String[]{strings[0],String.valueOf(id)});
                 cursor.moveToFirst();
                 if(cursor.getCount() > 0){
                     return 1;
@@ -181,7 +204,8 @@ public class EventDetails extends AppCompatActivity{
             if(integer == 1){
                 delete_button.setVisibility(ImageView.VISIBLE);
                 joinButton.setVisibility(View.INVISIBLE);
-                admin = true;
+
+                isAdmin = true;
             }
             else if (integer == 2){
                 finish();
@@ -209,6 +233,8 @@ public class EventDetails extends AppCompatActivity{
     @Override
     protected void onStart() {
         super.onStart();
+        isAdmin = false;
+        checkAdmin();
         checkMember();
     }
 }
