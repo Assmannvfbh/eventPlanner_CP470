@@ -198,7 +198,7 @@
             android:ems="10"
             android:gravity="center_vertical"
             android:inputType="time"
-            android:hint="@string/time_hint"
+            android:hint=""
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.933"
