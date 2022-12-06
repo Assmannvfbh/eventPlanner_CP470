@@ -9,6 +9,16 @@
     <string name="help">Help</string>
     <string name="logout">Logout</string>
 
+    <string name="help_dialog_main">Select an action.</string>
+    <string name="help_dialog_login">Login to your existing account or create new account using the button in the toolbar.</string>
+    <string name="help_dialog_registration">Enter your user information and make sure the password fields match.</string>
+    <string name="help_dialog_party_list">All the events are listed here. Click on it to see the details.</string>
+    <string name="help_dialog_my_events">All your created and joined events are listed here. the user icon indicates that you are the creator.</string>
+    <string name="help_dialog_profile">Enter your changes here and commit clicking the "ok" button.</string>
+    <string name="help_dialog_create_event">Create a new event.</string>
+    <string name="help_dialog_event_details">Here you can see the event details. If you are the creator of the event, you are able to delete your event. If not you can join or leave.</string>
+
+
     <!-- Strings LoginActivity-->
     <string name="login_hint_password">Your password</string>
     <string name="login_hint_username">Your username</string>

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -18,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +36,7 @@ public class MyEventsListActivity extends AppCompatActivity {
     SQLiteDatabase db;
     List<Event> eventList;
     RecyclerView list;
+    Dialog helpDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +74,7 @@ public class MyEventsListActivity extends AppCompatActivity {
 
         switch(id){
             case R.id.menu_standard_help:
-                Snackbar.make(this.toolbar, getResources().getString(R.string.register1_about_Niklas), Toast.LENGTH_SHORT).show();
+                openHelpDialog();
                 break;
 
             case R.id.menu_standard_logout:
@@ -85,6 +88,23 @@ public class MyEventsListActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    public void openHelpDialog() {
+        helpDialog = new Dialog(this);
+        helpDialog.setContentView(R.layout.dialog_help);
+        Button okButton = helpDialog.findViewById(R.id.help_dialog_ok);
+        TextView text = helpDialog.findViewById(R.id.help_dialog_text);
+
+        text.setText(getResources().getString(R.string.help_dialog_my_events));
+
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                helpDialog.dismiss();
+            }
+        });
+        helpDialog.show();
     }
 
     private void setAdapter() {

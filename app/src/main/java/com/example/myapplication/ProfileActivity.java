@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +20,7 @@ public class ProfileActivity extends RegistrationActivity {
     EditText pass;
     EditText passrepeat;
     TextView DOB;
+    Dialog helpDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,6 +101,23 @@ public class ProfileActivity extends RegistrationActivity {
         pass.setText(password);
         passrepeat.setText(passwordRepeat);
         DOB.setText(date);
+    }
+
+    public void openDialog() {
+        helpDialog = new Dialog(this);
+        helpDialog.setContentView(R.layout.dialog_help);
+        Button okButton = helpDialog.findViewById(R.id.help_dialog_ok);
+        TextView text = helpDialog.findViewById(R.id.help_dialog_text);
+
+        text.setText(getResources().getString(R.string.help_dialog_profile));
+
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                helpDialog.dismiss();
+            }
+        });
+        helpDialog.show();
     }
 
 

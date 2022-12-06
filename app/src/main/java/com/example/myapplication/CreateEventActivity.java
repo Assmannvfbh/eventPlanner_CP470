@@ -23,12 +23,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 //import com.google.android.gms.maps.MapView;
 
 import com.google.android.gms.maps.MapView;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,6 +40,7 @@ public class CreateEventActivity extends AppCompatActivity {
     EditText eventPrice;
     MapView map;
     Dialog dialog;
+    Dialog helpDialog;
     Toolbar toolbar;
 
     SQLiteDatabase db;
@@ -96,6 +95,23 @@ public class CreateEventActivity extends AppCompatActivity {
         timePickerDialog.show();
     }
 
+    public void openHelpDialog() {
+        helpDialog = new Dialog(this);
+        helpDialog.setContentView(R.layout.dialog_help);
+        Button okButton = helpDialog.findViewById(R.id.help_dialog_ok);
+        TextView text = helpDialog.findViewById(R.id.help_dialog_text);
+
+        text.setText(getResources().getString(R.string.help_dialog_create_event));
+
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                helpDialog.dismiss();
+            }
+        });
+        helpDialog.show();
+    }
+
     public String createTime(String hour, String minute, String am_or_pm){
         return hour + ":" + minute + am_or_pm;
     }
@@ -141,7 +157,7 @@ public class CreateEventActivity extends AppCompatActivity {
 
         switch(id){
             case R.id.menu_standard_help:
-                Snackbar.make(this.toolbar, getResources().getString(R.string.register1_about_Niklas), Toast.LENGTH_SHORT).show();
+                openHelpDialog();
                 break;
 
             case R.id.menu_standard_logout:

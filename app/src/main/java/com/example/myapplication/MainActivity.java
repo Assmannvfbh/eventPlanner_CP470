@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,9 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
-
-import com.google.android.material.snackbar.Snackbar;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView map;
     Button eventList;
+
+    Dialog helpDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +79,23 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void openHelpDialog() {
+        helpDialog = new Dialog(this);
+        helpDialog.setContentView(R.layout.dialog_help);
+        Button okButton = helpDialog.findViewById(R.id.help_dialog_ok);
+        TextView text = helpDialog.findViewById(R.id.help_dialog_text);
+
+        text.setText(getResources().getString(R.string.help_dialog_main));
+
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                helpDialog.dismiss();
+            }
+        });
+        helpDialog.show();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -91,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch(id){
             case R.id.menu_standard_help:
-                Snackbar.make(this.toolbar, getResources().getString(R.string.register1_about_Niklas), Toast.LENGTH_SHORT).show();
+                openHelpDialog();
                 break;
 
             case R.id.menu_standard_logout:

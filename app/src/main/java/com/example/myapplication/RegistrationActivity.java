@@ -43,6 +43,7 @@ public class RegistrationActivity extends AppCompatActivity {
     EditText surnameTextField;
     TextView birthday;
     Dialog dialog;
+    Dialog helpDialog;
     ImageView profilePic;
     Button registerButton;
     int REQUEST_IMAGE_CAPTURE = 1;
@@ -115,6 +116,23 @@ public class RegistrationActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    public void openHelpDialog() {
+        helpDialog = new Dialog(this);
+        helpDialog.setContentView(R.layout.dialog_help);
+        Button okButton = helpDialog.findViewById(R.id.help_dialog_ok);
+        TextView text = helpDialog.findViewById(R.id.help_dialog_text);
+
+        text.setText(getResources().getString(R.string.help_dialog_registration));
+
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                helpDialog.dismiss();
+            }
+        });
+        helpDialog.show();
+    }
+
     public void setDateText(DatePicker datePicker){
         int month = datePicker.getMonth() + 1; //add +1, because getMonth() returns values from 0 - 11
         String st = datePicker.getYear() + "-" + month + "-" + datePicker.getDayOfMonth();
@@ -135,7 +153,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         switch(id){
             case R.id.menu_registration_help:
-                Snackbar.make(this.toolbar, getResources().getString(R.string.register1_about_Niklas), Toast.LENGTH_SHORT).show();
+                openHelpDialog();
                 break;
         }
         return true;

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,6 +17,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -29,6 +32,7 @@ public class PartyListActivity extends AppCompatActivity {
     protected DatabaseService databaseService;
     protected SQLiteDatabase db;
     View view;
+    Dialog helpDialog;
 
     Toolbar toolbar;
 
@@ -71,8 +75,8 @@ public class PartyListActivity extends AppCompatActivity {
         Intent intent;
 
         switch(id){
-            case R.id.event_details_toolbar_about:
-                Snackbar.make(this.toolbar, getResources().getString(R.string.login_about_Niklas), Toast.LENGTH_SHORT).show();
+            case R.id.event_details_toolbar_help:
+                openHelpDialog();
                 break;
             case R.id.event_details_toolbar_plus:
                 intent = new Intent(PartyListActivity.this, CreateEventActivity.class);
@@ -88,6 +92,23 @@ public class PartyListActivity extends AppCompatActivity {
                 break;
         }
         return true;
+    }
+
+    public void openHelpDialog() {
+        helpDialog = new Dialog(this);
+        helpDialog.setContentView(R.layout.dialog_help);
+        Button okButton = helpDialog.findViewById(R.id.help_dialog_ok);
+        TextView text = helpDialog.findViewById(R.id.help_dialog_text);
+
+        text.setText(getResources().getString(R.string.help_dialog_party_list));
+
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                helpDialog.dismiss();
+            }
+        });
+        helpDialog.show();
     }
 
 

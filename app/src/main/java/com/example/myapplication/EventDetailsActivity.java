@@ -34,6 +34,7 @@ public class EventDetailsActivity extends AppCompatActivity{
     ImageView delete_button;
     Button joinButton;
     Dialog dialog;
+    Dialog helpDialog;
 
     boolean isAdmin;
     boolean isMember;
@@ -107,7 +108,7 @@ public class EventDetailsActivity extends AppCompatActivity{
 
         switch(id){
             case R.id.menu_standard_help:
-                Snackbar.make(this.toolbar, getResources().getString(R.string.register1_about_Niklas), Toast.LENGTH_SHORT).show();
+                openHelpDialog();
                 break;
 
             case R.id.menu_standard_logout:
@@ -157,6 +158,23 @@ public class EventDetailsActivity extends AppCompatActivity{
             }
         });
         dialog.show();
+    }
+
+    public void openHelpDialog() {
+        helpDialog = new Dialog(this);
+        helpDialog.setContentView(R.layout.dialog_help);
+        Button okButton = helpDialog.findViewById(R.id.help_dialog_ok);
+        TextView text = helpDialog.findViewById(R.id.help_dialog_text);
+
+        text.setText(getResources().getString(R.string.help_dialog_event_details));
+
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                helpDialog.dismiss();
+            }
+        });
+        helpDialog.show();
     }
 
 
