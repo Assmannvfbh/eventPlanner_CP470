@@ -125,7 +125,7 @@ public class RegistrationActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.standard_menu,menu);
+        inflater.inflate(R.menu.registration_menu,menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -134,7 +134,7 @@ public class RegistrationActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         switch(id){
-            case R.id.register1_help:
+            case R.id.menu_registration_help:
                 Snackbar.make(this.toolbar, getResources().getString(R.string.register1_about_Niklas), Toast.LENGTH_SHORT).show();
                 break;
         }

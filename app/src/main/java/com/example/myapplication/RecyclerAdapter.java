@@ -49,7 +49,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), EventDetails.class);
+                Intent intent = new Intent(v.getContext(), EventDetailsActivity.class);
                 intent.putExtra("id", id);
                 v.getContext().startActivity(intent);
 

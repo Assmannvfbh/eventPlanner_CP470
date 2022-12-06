@@ -68,14 +68,24 @@ public class PartyListActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+        Intent intent;
 
         switch(id){
             case R.id.event_details_toolbar_about:
                 Snackbar.make(this.toolbar, getResources().getString(R.string.login_about_Niklas), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.event_details_toolbar_plus:
-                Intent intent = new Intent(PartyListActivity.this, CreateEvent.class);
+                intent = new Intent(PartyListActivity.this, CreateEventActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.event_details_toolbar_logout:
+                UserData.getUserData().clear();
+                intent = new Intent(PartyListActivity.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                break;
         }
         return true;
     }

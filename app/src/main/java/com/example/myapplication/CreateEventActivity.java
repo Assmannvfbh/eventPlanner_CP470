@@ -1,12 +1,13 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
-import android.database.Cursor;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.icu.util.Calendar;
 import android.os.AsyncTask;
@@ -15,12 +16,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 //import com.google.android.gms.maps.MapView;
 
@@ -30,7 +33,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CreateEvent extends AppCompatActivity {
+public class CreateEventActivity extends AppCompatActivity {
     EditText eventTitle;
     EditText eventOrganizer;
     EditText eventDescription;
@@ -97,7 +100,7 @@ public class CreateEvent extends AppCompatActivity {
         return hour + ":" + minute + am_or_pm;
     }
     private void createDateDialog() {
-        dialog = new Dialog(CreateEvent.this);
+        dialog = new Dialog(CreateEventActivity.this);
         LayoutInflater inflater = this.getLayoutInflater();
         dialog.setContentView(inflater.inflate(R.layout.datepicker,null));
         DatePicker datePicker = dialog.findViewById(R.id.dateicker_datepciker);
@@ -130,6 +133,28 @@ public class CreateEvent extends AppCompatActivity {
         inflater.inflate(R.menu.standard_menu,menu);
         toolbar.setTitle(getResources().getString(R.string.create_event_toolbar_header));
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        switch(id){
+            case R.id.menu_standard_help:
+                Snackbar.make(this.toolbar, getResources().getString(R.string.register1_about_Niklas), Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.menu_standard_logout:
+                UserData.getUserData().clear();
+                Intent intent = new Intent(CreateEventActivity.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                break;
+        }
+
+        return true;
     }
 
     public void createEvent(View view){

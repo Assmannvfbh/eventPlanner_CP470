@@ -10,9 +10,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icons8_dancing_96"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/icons8_dancing_96"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
@@ -39,7 +39,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Profile"
+            android:name=".ProfileActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -53,14 +53,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".CreateEvent"
+            android:name=".CreateEventActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".EventDetails"
+            android:name=".EventDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".RegistrationActivity"

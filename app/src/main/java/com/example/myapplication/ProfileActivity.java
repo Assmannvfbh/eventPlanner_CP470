@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class Profile extends RegistrationActivity {
+public class ProfileActivity extends RegistrationActivity {
     Button updateButton;
     EditText name_inp;
     EditText lastName_inp;
@@ -51,6 +51,7 @@ public class Profile extends RegistrationActivity {
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                database = service.getWritableDatabase();
                 String query = "UPDATE " + DatabaseService.TEST_TABLE_NAME + " SET username= '" + user.getText().toString()
                         +"', password= '" + pass.getText().toString() + "', dateOfBirth= '"+ DOB.getText().toString()
                         + "', email= '" + eMail_inp.getText().toString() + "' WHERE forename= '" + name_inp.getText().toString()
@@ -74,7 +75,7 @@ public class Profile extends RegistrationActivity {
                 myEdit.putString("dateOfBirth", DOB.getText().toString());
                 myEdit.commit();
 
-                Intent mainIntent = new Intent(Profile.this, MainActivity.class);
+                Intent mainIntent = new Intent(ProfileActivity.this, MainActivity.class);
                 startActivity(mainIntent);
             }
         });
@@ -98,5 +99,12 @@ public class Profile extends RegistrationActivity {
         pass.setText(password);
         passrepeat.setText(passwordRepeat);
         DOB.setText(date);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        database.close();
     }
 }

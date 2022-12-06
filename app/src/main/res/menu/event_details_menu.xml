@@ -9,6 +9,12 @@
         />
 
     <item
+        android:id="@+id/event_details_toolbar_logout"
+        android:title="@string/logout"
+        app:showAsAction="never"
+        />
+
+    <item
         android:id="@+id/event_details_toolbar_plus"
         android:title="add_User"
         android:icon="@drawable/ic_baseline_add_32"

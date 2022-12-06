@@ -15,10 +15,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +63,28 @@ public class MyEventsListActivity extends AppCompatActivity {
         inflater.inflate(R.menu.standard_menu,menu);
         toolbar.setTitle(getResources().getString(R.string.myEventsList_toolbar_header));
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        switch(id){
+            case R.id.menu_standard_help:
+                Snackbar.make(this.toolbar, getResources().getString(R.string.register1_about_Niklas), Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.menu_standard_logout:
+                UserData.getUserData().clear();
+                Intent intent = new Intent(MyEventsListActivity.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                break;
+        }
+
+        return true;
     }
 
     private void setAdapter() {
@@ -176,7 +202,7 @@ public class MyEventsListActivity extends AppCompatActivity {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), EventDetails.class);
+                    Intent intent = new Intent(v.getContext(), EventDetailsActivity.class);
                     intent.putExtra("id", id);
                     v.getContext().startActivity(intent);
                 }

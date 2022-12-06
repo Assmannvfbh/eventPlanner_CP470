@@ -12,6 +12,7 @@
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_map_view.xml" value="0.25" />
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_my_events_list.xml" value="0.25" />
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_party_list.xml" value="0.25" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_profile.xml" value="0.20697463768115942" />
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_registration.xml" value="0.25" />
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_to_do_list.xml" value="0.25" />
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/datepicker.xml" value="0.25" />
@@ -21,6 +22,7 @@
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/task_item.xml" value="0.25" />
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/menu/event_details_menu.xml" value="0.264" />
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/menu/login_menu.xml" value="0.25" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/menu/registration_menu.xml" value="0.25" />
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/menu/standard_menu.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_create_event.xml" value="0.24509606461282366" />
         <entry key="app/src/main/res/layout/activity_event_details.xml" value="0.1734375" />
