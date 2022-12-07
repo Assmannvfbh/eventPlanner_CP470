@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
 import android.app.Dialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -52,22 +54,25 @@ public class ProfileActivity extends RegistrationActivity {
         passrepeat.setText(passwordRepeat);
         DOB.setText(date);
 
+        DatabaseService service1 = new DatabaseService(this);
+
+        database = service1.getWritableDatabase();
+
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                database = service.getWritableDatabase();
-                String query = "UPDATE " + DatabaseService.TEST_TABLE_NAME + " SET username= '" + user.getText().toString()
-                        +"', password= '" + pass.getText().toString() + "', dateOfBirth= '"+ DOB.getText().toString()
-                        + "', email= '" + eMail_inp.getText().toString() + "' WHERE forename= '" + name_inp.getText().toString()
-                        + "' AND surname= '" + lastName_inp.getText().toString() + "';";
+//                String query = "UPDATE " + RegisterService.TABLE_NAME + " SET username= '" + user.getText().toString()
+//                        +"', password= '" + pass.getText().toString() + "', dateOfBirth= '"+ DOB.getText().toString()
+//                        + "', email= '" + eMail_inp.getText().toString() + "' WHERE forename= '" + name_inp.getText().toString()
+//                        + "' AND surname= '" + lastName_inp.getText().toString() + "';";
                 //database.execSQL(query);
                 ContentValues values = new ContentValues();
-                values.put("password", pass.getText().toString());
-                values.put("dateOfBirth", DOB.getText().toString());
-                values.put("email", eMail_inp.getText().toString());
-                values.put("forename", name_inp.getText().toString());
-                values.put("surname", lastName_inp.getText().toString());
-                database.update(DatabaseService.TEST_TABLE_NAME, values , "username="+user.getText().toString(), new String[]{username});
+                values.put("PASSWORD", pass.getText().toString());
+                values.put("DATE_OF_BIRTH", DOB.getText().toString());
+                values.put("EMAIL", eMail_inp.getText().toString());
+                values.put("NAME", name_inp.getText().toString());
+                values.put("SURNAME", lastName_inp.getText().toString());
+                database.update(DatabaseService.TEST_TABLE_NAME, values , "USERNAME = ?", new String[]{username});
                 //SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
                 SharedPreferences.Editor myEdit = sh.edit();
                 myEdit.putString("username", user.getText().toString());
