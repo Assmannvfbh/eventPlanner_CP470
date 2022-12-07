@@ -3,16 +3,23 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Telephony;
+import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class EventDetails extends AppCompatActivity{
     DatabaseService databaseService;
@@ -25,6 +32,8 @@ public class EventDetails extends AppCompatActivity{
     Toolbar toolbar;
     ImageView delete_button;
     Button joinButton;
+    Button invite;
+    EditText phone;
     boolean admin;
     int id;
 
@@ -41,6 +50,8 @@ public class EventDetails extends AppCompatActivity{
         location = this.findViewById(R.id.eventDetail_location);
         delete_button = this.findViewById(R.id.eventDetail_trash);
         joinButton = this.findViewById(R.id.eventDetails_join_button);
+        invite = this.findViewById(R.id.invite);
+        phone = this.findViewById(R.id.phone_Input);
         delete_button.setVisibility(ImageView.INVISIBLE);
         delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +60,31 @@ public class EventDetails extends AppCompatActivity{
                 loader.execute();
             }
         });
+
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String message = "Hey do you want to come to " + title.getText().toString();
+                String phoneNum = phone.getText().toString().trim();
+
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    if(checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED){
+                        try{
+                            SmsManager smsManager = SmsManager.getDefault();
+                            smsManager.sendTextMessage(phoneNum, null, message, null, null);
+                            //Toast.makeText(this, "Message is sent", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Invite sent", Toast.LENGTH_SHORT);
+                        }catch (Exception e){
+                            Toast.makeText(getApplicationContext(), "Invite failed to send", Toast.LENGTH_SHORT).show();
+                        }
+                    }else{
+                        requestPermissions(new String[]{Manifest.permission.SEND_SMS},1);
+                    }
+                }
+
+            }
+        });
+
         id = getIntent().getIntExtra("id", -1);
         checkAdmin();
         EventDetailLoader loader = new EventDetailLoader(0);
@@ -130,4 +166,6 @@ public class EventDetails extends AppCompatActivity{
         super.onDestroy();
         db.close();
     }
+
+
 }
