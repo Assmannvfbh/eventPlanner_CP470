@@ -8,64 +8,6 @@
 
 
     <TextView
-        android:id="@+id/eventDetails_title"
-        android:layout_width="148dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="34dp"
-        android:layout_marginEnd="244dp"
-        android:layout_marginBottom="649dp"
-        android:text="@string/title" />
-
-    <TextView
-        android:id="@+id/eventTitleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="67dp"
-        android:layout_marginEnd="115dp"
-        android:layout_marginBottom="632dp"
-        android:hint="@string/event_name" />
-
-    <TextView
-        android:id="@+id/eventDetails_organizer"
-        android:layout_width="273dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="103dp"
-        android:layout_marginEnd="121dp"
-        android:layout_marginBottom="588dp"
-        android:text="@string/organizer" />
-
-    <TextView
-        android:id="@+id/eventOrganizerText"
-        android:layout_width="267dp"
-        android:layout_height="38dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="124dp"
-        android:layout_marginEnd="125dp"
-        android:layout_marginBottom="569dp"
-        android:autofillHints=""
-        android:hint="@string/eventOrganizerText"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
         android:id="@+id/list_of_tasks"
         android:layout_width="273dp"
         android:layout_height="40dp"
@@ -73,10 +15,10 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="196dp"
-        android:layout_marginEnd="124dp"
-        android:layout_marginBottom="495dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="126dp"
+        android:layout_marginBottom="664dp"
         android:text="@string/list_of_tasks" />
 
     <ListView
@@ -88,11 +30,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="17dp"
-        android:layout_marginLeft="17dp"
-        android:layout_marginTop="232dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="13dp" />
+        android:layout_marginStart="13dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="74dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="171dp" />
 
     <EditText
         android:layout_width="wrap_content"
