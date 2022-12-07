@@ -4,18 +4,23 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +39,8 @@ public class EventDetailsActivity extends AppCompatActivity{
     ImageView delete_button;
     Button joinButton;
     Dialog dialog;
+    Button invite;
+    EditText phone;
     Dialog helpDialog;
 
     boolean isAdmin;
@@ -62,6 +69,8 @@ public class EventDetailsActivity extends AppCompatActivity{
         location = this.findViewById(R.id.eventDetail_location);
         delete_button = this.findViewById(R.id.eventDetail_trash);
         joinButton = this.findViewById(R.id.eventDetails_join_button);
+        invite = this.findViewById(R.id.invite);
+        phone = this.findViewById(R.id.phone_Input);
         dialog = new Dialog(this);
         joinButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +92,31 @@ public class EventDetailsActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 openDialog();
+            }
+        });
+
+
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String message = "Hey do you want to come to " + title.getText().toString();
+                String phoneNum = phone.getText().toString().trim();
+
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    if(checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED){
+                        try{
+                            SmsManager smsManager = SmsManager.getDefault();
+                            smsManager.sendTextMessage(phoneNum, null, message, null, null);
+                            //Toast.makeText(this, "Message is sent", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Invite sent", Toast.LENGTH_SHORT);
+                        }catch (Exception e){
+                            Toast.makeText(getApplicationContext(), "Invite failed to send", Toast.LENGTH_SHORT).show();
+                        }
+                    }else{
+                        requestPermissions(new String[]{Manifest.permission.SEND_SMS},1);
+                    }
+                }
+
             }
         });
         id = getIntent().getIntExtra("id", -1);
