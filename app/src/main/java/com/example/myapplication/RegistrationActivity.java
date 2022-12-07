@@ -175,7 +175,6 @@ public class RegistrationActivity extends AppCompatActivity {
             myEdit.putString("dateOfBirth", birthday.getText().toString());
             myEdit.commit();
 
-            //TODO: Check Email field for duplicates, password parity validation
             Map<String, String> entries = new HashMap<>();
 
             entries.put("username", usernameTextField.getText().toString());

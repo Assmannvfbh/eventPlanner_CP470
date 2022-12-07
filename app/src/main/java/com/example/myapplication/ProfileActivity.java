@@ -35,6 +35,7 @@ public class ProfileActivity extends RegistrationActivity {
         passrepeat = (EditText) findViewById(R.id.registration_password_input_repeat);
         DOB = (TextView) findViewById(R.id.registration_DO2);
         SharedPreferences sh = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+
         String name = sh.getString("forename", "");
         String surname = sh.getString("surname", "");
         String username = sh.getString("username", "");
@@ -42,6 +43,7 @@ public class ProfileActivity extends RegistrationActivity {
         String password = sh.getString("password", "");
         String passwordRepeat = sh.getString("passwordRepeat", "");
         String date = sh.getString("dateOfBirth", "");
+
         name_inp.setText(name);
         lastName_inp.setText(surname);
         user.setText(username);
@@ -103,7 +105,7 @@ public class ProfileActivity extends RegistrationActivity {
         DOB.setText(date);
     }
 
-    public void openDialog() {
+    public void openHelpDialog() {
         helpDialog = new Dialog(this);
         helpDialog.setContentView(R.layout.dialog_help);
         Button okButton = helpDialog.findViewById(R.id.help_dialog_ok);
