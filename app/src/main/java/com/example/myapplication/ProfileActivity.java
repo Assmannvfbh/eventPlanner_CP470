@@ -1,13 +1,19 @@
 package com.example.myapplication;
 
 import android.app.Dialog;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +29,8 @@ public class ProfileActivity extends RegistrationActivity {
     EditText passrepeat;
     TextView DOB;
     Dialog helpDialog;
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +45,8 @@ public class ProfileActivity extends RegistrationActivity {
         passrepeat = (EditText) findViewById(R.id.registration_password_input_repeat);
         DOB = (TextView) findViewById(R.id.registration_DO2);
         SharedPreferences sh = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        toolbar = this.findViewById(R.id.profile_toolbar);
+        setSupportActionBar(toolbar);
 
         String name = sh.getString("forename", "");
         String surname = sh.getString("surname", "");
@@ -132,5 +142,34 @@ public class ProfileActivity extends RegistrationActivity {
     protected void onDestroy() {
         super.onDestroy();
         database.close();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.standard_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        switch(id){
+            case R.id.menu_standard_help:
+                openHelpDialog();
+                break;
+
+            case R.id.menu_standard_logout:
+                UserData.getUserData().clear();
+                Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                break;
+        }
+
+        return true;
     }
 }

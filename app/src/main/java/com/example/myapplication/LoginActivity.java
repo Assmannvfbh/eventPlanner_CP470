@@ -25,15 +25,12 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
-    //Test data: Username = assmannvfbh, Password = abc
-    //Test data: Username = Marcus, Password = abc
     Toolbar toolbar;
     EditText username;
     EditText password;
     SQLiteDatabase database;
     Button loginButton;
     ProgressBar progressBar;
-    UserData userData;
     Dialog helpDialog;
 
 

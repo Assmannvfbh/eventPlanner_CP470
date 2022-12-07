@@ -16,7 +16,7 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/registration_toolbar"
+            android:id="@+id/profile_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -24,7 +24,7 @@
             android:id="@+id/profile_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/registration_toolbar"
+            android:layout_below="@id/profile_toolbar"
             android:layout_alignParentTop="false"
             android:layout_alignParentEnd="false"
             android:layout_alignParentBottom="false"
