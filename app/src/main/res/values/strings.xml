@@ -36,9 +36,7 @@
     <string name="price">Price:</string>
     <string name="create_event">Create Event</string>
     <string name="location">Location:</string>
-    <string name="event_name">Event Name</string>
-    <string name="profile_update">OK</string>
-    <string name="time_hint">Time</string>
+    <string name="event_name">Graduation Party</string>
 
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
@@ -46,7 +44,7 @@
     <string name="DOB" translatable="false">YYYY-MM-DD</string>
     <string name="registration_help">Please enter a valid email and a username/password of your choice. About: Niklas Aßmann and (Enter Name), 1.0 </string>
 
-
+    <string name="eventOrganizerText">John Doe</string>
     <string name="registration_register">register</string>
     <string name="save">Save</string>
     <string name="new_task">New Task</string>

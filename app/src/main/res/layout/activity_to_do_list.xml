@@ -16,9 +16,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="18dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="34dp"
         android:layout_marginEnd="244dp"
-        android:layout_marginBottom="674dp"
+        android:layout_marginBottom="649dp"
         android:text="@string/title" />
 
     <TextView
@@ -29,10 +29,10 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="41dp"
-        android:layout_marginEnd="117dp"
-        android:layout_marginBottom="658dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="67dp"
+        android:layout_marginEnd="115dp"
+        android:layout_marginBottom="632dp"
         android:hint="@string/event_name" />
 
     <TextView
@@ -62,7 +62,7 @@
         android:layout_marginEnd="125dp"
         android:layout_marginBottom="569dp"
         android:autofillHints=""
-        android:hint=""
+        android:hint="@string/eventOrganizerText"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
