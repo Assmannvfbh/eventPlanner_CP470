@@ -61,7 +61,7 @@ public class EventDetails extends AppCompatActivity{
             }
         });
 
-        phone.setOnClickListener(new View.OnClickListener() {
+        invite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String message = "Hey do you want to come to " + title.getText().toString();
