@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -15,8 +14,6 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.InputType;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,8 +27,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
-
-import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,6 +43,7 @@ public class RegistrationActivity extends AppCompatActivity {
     EditText surnameTextField;
     TextView birthday;
     Dialog dialog;
+    Dialog helpDialog;
     ImageView profilePic;
     Button registerButton;
     int REQUEST_IMAGE_CAPTURE = 1;
@@ -60,11 +56,10 @@ public class RegistrationActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.registration_toolbar);
         setSupportActionBar(toolbar);
 
-        RegisterService service = new RegisterService(this);
+        DatabaseService service = new DatabaseService(this);
         database = service.getWritableDatabase();
 
         registerButton = findViewById(R.id.registration_register_button);
-        registerButton.setOnClickListener(new registerListener());
         usernameTextField = findViewById(R.id.registration_username_input);
         emailTextField = findViewById(R.id.registration_email_input);
         passwordTextField = findViewById(R.id.registration_password_input);
@@ -82,6 +77,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 startActivityForResult(takePicture, REQUEST_IMAGE_CAPTURE);
             }
         });
+        registerButton.setOnClickListener(new registerListener());
 
 
     }
@@ -120,6 +116,23 @@ public class RegistrationActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    public void openHelpDialog() {
+        helpDialog = new Dialog(this);
+        helpDialog.setContentView(R.layout.dialog_help);
+        Button okButton = helpDialog.findViewById(R.id.help_dialog_ok);
+        TextView text = helpDialog.findViewById(R.id.help_dialog_text);
+
+        text.setText(getResources().getString(R.string.help_dialog_registration));
+
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                helpDialog.dismiss();
+            }
+        });
+        helpDialog.show();
+    }
+
     public void setDateText(DatePicker datePicker){
         int month = datePicker.getMonth() + 1; //add +1, because getMonth() returns values from 0 - 11
         String st = datePicker.getYear() + "-" + month + "-" + datePicker.getDayOfMonth();
@@ -130,7 +143,7 @@ public class RegistrationActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.standard_menu,menu);
+        inflater.inflate(R.menu.registration_menu,menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -139,8 +152,8 @@ public class RegistrationActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         switch(id){
-            case R.id.register1_help:
-                Snackbar.make(this.toolbar, getResources().getString(R.string.register1_about_Niklas), Toast.LENGTH_SHORT).show();
+            case R.id.menu_registration_help:
+                openHelpDialog();
                 break;
         }
         return true;
@@ -162,7 +175,6 @@ public class RegistrationActivity extends AppCompatActivity {
             myEdit.putString("dateOfBirth", birthday.getText().toString());
             myEdit.commit();
 
-            //TODO: Check Email field for duplicates, password parity validation
             Map<String, String> entries = new HashMap<>();
 
             entries.put("username", usernameTextField.getText().toString());
@@ -207,21 +219,21 @@ public class RegistrationActivity extends AppCompatActivity {
             String[] usernameArray = new String[1];
             usernameArray[0] = entries.get("username");
 
-            Cursor cursorForUsername = database.rawQuery("Select USERNAME from " + RegisterService.TABLE_NAME + " WHERE USERNAME = ?", usernameArray);
+            Cursor cursorForUsername = database.rawQuery("Select USERNAME from " + DatabaseService.TEST_TABLE_NAME + " WHERE USERNAME = ?", usernameArray);
             int rows = cursorForUsername.getCount();
             if (rows > 0) {
                 return USERNAME_EXISTS;
             }
             else if (android.util.Patterns.EMAIL_ADDRESS.matcher(entries.get("email")).matches() && entries.get("password").equals(entries.get("passwordRepeat"))) {
                 ContentValues contentValues = new ContentValues();
-                contentValues.put(RegisterService.USERNAME, entries.get("username"));
-                contentValues.put(RegisterService.EMAIL, entries.get("email"));
-                contentValues.put(RegisterService.PASSWORD, entries.get("password"));
-                contentValues.put(RegisterService.DATE_OF_BIRTH, entries.get("dateOfBirth"));
-                contentValues.put(RegisterService.NAME, entries.get("forename"));
-                contentValues.put(RegisterService.SURNAME, entries.get("surname"));
+                contentValues.put(DatabaseService.USERNAME, entries.get("username"));
+                contentValues.put(DatabaseService.EMAIL, entries.get("email"));
+                contentValues.put(DatabaseService.PASSWORD, entries.get("password"));
+                contentValues.put(DatabaseService.DATE_OF_BIRTH, entries.get("dateOfBirth"));
+                contentValues.put(DatabaseService.NAME, entries.get("forename"));
+                contentValues.put(DatabaseService.SURNAME, entries.get("surname"));
 
-                database.insert(RegisterService.TABLE_NAME, null, contentValues);
+                database.insert(DatabaseService.TEST_TABLE_NAME, null, contentValues);
                 return USER_CREATED;
             }
             return ENTRY_ERROR;
@@ -231,15 +243,19 @@ public class RegistrationActivity extends AppCompatActivity {
         protected void onPostExecute(Integer integer) {
             super.onPostExecute(integer);
             if (integer.equals(USER_CREATED)) {
+
                 //Toast.makeText(RegistrationActivity.this, getResources().getString(R.string.registration_suc), Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
             else if(integer.equals(ENTRY_ERROR)){
+
                 //Toast.makeText(RegistrationActivity.this, getResources().getString(R.string.registration_pass_invalid), Toast.LENGTH_SHORT).show();
             }
             else if(integer.equals(USERNAME_EXISTS)){
                 //Toast.makeText(RegistrationActivity.this, getResources().getString(R.string.registration_usern_exists), Toast.LENGTH_SHORT).show();
+
             }
         }
 

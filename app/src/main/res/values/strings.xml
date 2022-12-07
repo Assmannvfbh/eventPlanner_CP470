@@ -3,7 +3,21 @@
     <string name="username">Username:</string>
     <string name="password">Password:</string>
     <string name="login">Login</string>
+
+
+    <!-- Strings Toolbar-->
     <string name="help">Help</string>
+    <string name="logout">Logout</string>
+
+    <string name="help_dialog_main">Select an action.</string>
+    <string name="help_dialog_login">Login to your existing account or create new account using the button in the toolbar.</string>
+    <string name="help_dialog_registration">Enter your user information and make sure the password fields match.</string>
+    <string name="help_dialog_party_list">All the events are listed here. Click on it to see the details.</string>
+    <string name="help_dialog_my_events">All your created and joined events are listed here. the user icon indicates that you are the creator.</string>
+    <string name="help_dialog_profile">Enter your changes here and commit clicking the "ok" button.</string>
+    <string name="help_dialog_create_event">Create a new event.</string>
+    <string name="help_dialog_event_details">Here you can see the event details. If you are the creator of the event, you are able to delete your event. If not you can join or leave.</string>
+
 
     <!-- Strings LoginActivity-->
     <string name="login_hint_password">Your password</string>
@@ -27,7 +41,7 @@
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="Email">E-mail</string>
-    <string name="DOB">YYYY-MM-DD</string>
+    <string name="DOB" translatable="false">YYYY-MM-DD</string>
     <string name="registration_help">Please enter a valid email and a username/password of your choice. About: Niklas Aßmann and (Enter Name), 1.0 </string>
 
     <string name="eventOrganizerText">John Doe</string>
@@ -36,4 +50,22 @@
     <string name="new_task">New Task</string>
     <string name="tasks">Tasks</string>
     <string name="list_of_tasks">List of Tasks:</string>
+    <string name="snackbar_event_deleted">Event deleted</string>
+    <string name="eventDetail_leave_button">Leave Event</string>
+    <string name="main_my_events_label">My Events</string>
+    <string name="main_event_list_label">Event List</string>
+    <string name="main_map_label">Map</string>
+    <string name="main_profile_label">Profile</string>
+    <string name="eventDetail_join_button">Join Event</string>
+    <string name="list_organizer_label">Organizer:</string>
+
+    <string name="delete_dialog_text">Do you want to delete this event?</string>
+    <string name="delete_dialog_okButton_text">OK</string>
+    <string name="delete_dialog_cancelButton_text">Cancel</string>
+
+
+    <string name="eventDetail_toolbar_header">Event Details</string>
+    <string name="eventList_toolbar_header">Events</string>
+    <string name="create_event_toolbar_header">Create Event</string>
+    <string name="myEventsList_toolbar_header">My Events</string>
 </resources>

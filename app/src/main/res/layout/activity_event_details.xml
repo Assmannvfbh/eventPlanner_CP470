@@ -4,105 +4,153 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EventDetails">
+    tools:context=".EventDetailsActivity">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
         tools:layout_editor_absoluteX="10dp"
         tools:layout_editor_absoluteY="10dp">
-    <LinearLayout
-        android:id="@+id/eventDetails"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical">
 
-        <TextView
-            style="@style/header"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/eventDetail_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Title"
-            android:layout_marginBottom="0dp"/>
+            android:layout_alignParentTop="true">
 
-        <TextView
-            style="@style/content"
-            android:id="@+id/eventTitle"
+        </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+            android:id="@+id/eventDetails"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="John's Birthday Party"
-            android:layout_marginBottom="3dp"/>
+            android:layout_height="match_parent"
+            android:layout_above="@+id/eventDetails_join_button"
+            android:layout_below="@id/eventDetail_toolbar"
 
-        <TextView
-            style="@style/header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Organizer"
-            />
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            style="@style/content"
-            android:id="@+id/eventOrganizer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sally"
-            android:layout_marginBottom="3dp"/>
+            <TextView
+                style="@style/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:text="Title" />
 
-        <TextView
-            style="@style/header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Description"
-            />
+            <TextView
+                android:id="@+id/eventDetails_title"
+                style="@style/eventDetail_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:text="John's Birthday Party" />
 
-        <TextView
-            style="@style/content"
-            android:id="@+id/eventDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ligula, pulvinar id fringilla eu, molestie at nisl. Cras quis malesuada nunc. Duis aliquam diam tortor, ut iaculis erat tincidunt."
-            android:layout_marginBottom="3dp"/>
-        <TextView
-            style="@style/header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Date Time"/>
+            <TextView
+                style="@style/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Organizer" />
 
-        <TextView
-            style="@style/content"
-            android:id="@+id/eventDateTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="November 5th 2022 - 8:00 pm"
-            android:layout_marginBottom="3dp"/>
+            <TextView
+                android:id="@+id/eventDetails_organizer"
+                style="@style/eventDetail_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:text="Sally" />
 
-        <TextView
-            style="@style/header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Location"/>
+            <TextView
+                style="@style/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Description" />
 
-        <TextView
-            android:id="@+id/eventLocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:text="123 Main Street, New York NY, USA"/>
+            <TextView
+                android:id="@+id/eventDetails_description"
+                style="@style/eventDetail_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ligula, pulvinar id fringilla eu, molestie at nisl. Cras quis malesuada nunc. Duis aliquam diam tortor, ut iaculis erat tincidunt." />
 
-    </LinearLayout>
-    <Button
+            <TextView
+                style="@style/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date Time" />
 
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Join Event  - 2/10 Attending"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"/>
+            <TextView
+                android:id="@+id/eventDetail_date_time"
+                style="@style/eventDetail_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:text="November 5th 2022 - 8:00 pm" />
+
+            <TextView
+                style="@style/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Location" />
+
+            <TextView
+                android:id="@+id/eventDetail_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:text="123 Main Street, New York NY, USA" />
+
+            <View android:id="@+id/dummy"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_centerInParent="true"/>
+
+            <EditText
+                android:id="@+id/phone_Input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/dummy"
+                android:hint="Phone Number"
+                android:paddingTop="100dp"
+
+                android:inputType="phone"/>
+
+            <Button
+                android:id="@+id/invite"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="invite"
+                android:layout_alignRight="@id/dummy"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/eventDetails_join_button"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:text="Join Event" />
+
+        <ImageView
+            android:id="@+id/eventDetail_trash"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            app:srcCompat="@drawable/icons8_trash_96" />
+
 
     </RelativeLayout>
 

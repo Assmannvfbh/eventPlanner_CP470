@@ -1,12 +1,13 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
-import android.database.Cursor;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.icu.util.Calendar;
 import android.os.AsyncTask;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -29,19 +31,19 @@ import com.google.android.gms.maps.MapView;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CreateEvent extends AppCompatActivity {
+public class CreateEventActivity extends AppCompatActivity {
     EditText eventTitle;
     EditText eventOrganizer;
     EditText eventDescription;
     TextView eventDate;
     TextView eventTime;
     EditText eventPrice;
-    MapView map;
+    //MapView map;
     Dialog dialog;
+    Dialog helpDialog;
     Toolbar toolbar;
-
     SQLiteDatabase db;
-
+    EditText location;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,15 +66,15 @@ public class CreateEvent extends AppCompatActivity {
             }
         });
         eventPrice = (EditText) findViewById(R.id.priceText);
-        map = findViewById(R.id.mapView);
+        //map = findViewById(R.id.mapView);
 
-        EventService service = new EventService(this);
+        DatabaseService service = new DatabaseService(this);
         db = service.getWritableDatabase();
-        service.onCreate(db);
 
         toolbar = findViewById(R.id.createEvent_toolbar);
         setSupportActionBar(toolbar);
 
+        location = (EditText) findViewById(R.id.Location);
     }
 
     private void createTimeDialog() {
@@ -93,11 +95,28 @@ public class CreateEvent extends AppCompatActivity {
         timePickerDialog.show();
     }
 
+    public void openHelpDialog() {
+        helpDialog = new Dialog(this);
+        helpDialog.setContentView(R.layout.dialog_help);
+        Button okButton = helpDialog.findViewById(R.id.help_dialog_ok);
+        TextView text = helpDialog.findViewById(R.id.help_dialog_text);
+
+        text.setText(getResources().getString(R.string.help_dialog_create_event));
+
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                helpDialog.dismiss();
+            }
+        });
+        helpDialog.show();
+    }
+
     public String createTime(String hour, String minute, String am_or_pm){
         return hour + ":" + minute + am_or_pm;
     }
     private void createDateDialog() {
-        dialog = new Dialog(CreateEvent.this);
+        dialog = new Dialog(CreateEventActivity.this);
         LayoutInflater inflater = this.getLayoutInflater();
         dialog.setContentView(inflater.inflate(R.layout.datepicker,null));
         DatePicker datePicker = dialog.findViewById(R.id.dateicker_datepciker);
@@ -128,7 +147,30 @@ public class CreateEvent extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.standard_menu,menu);
+        toolbar.setTitle(getResources().getString(R.string.create_event_toolbar_header));
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        switch(id){
+            case R.id.menu_standard_help:
+                openHelpDialog();
+                break;
+
+            case R.id.menu_standard_logout:
+                UserData.getUserData().clear();
+                Intent intent = new Intent(CreateEventActivity.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                break;
+        }
+
+        return true;
     }
 
     public void createEvent(View view){
@@ -138,6 +180,7 @@ public class CreateEvent extends AppCompatActivity {
         map.put("description", eventDescription.getText().toString());
         map.put("time", eventTime.getText().toString());
         map.put("date", eventDate.getText().toString());
+        map.put("location", location.getText().toString());
         map.put("price", eventPrice.getText().toString());
 
         EventQuery eventQuery = new EventQuery();
@@ -152,16 +195,17 @@ public class CreateEvent extends AppCompatActivity {
         protected Integer doInBackground(Map<String, String>... maps) {
             Map<String, String> entries = maps[0];
             ContentValues contentValues = new ContentValues();
-            contentValues.put(EventService.TITLE, entries.get("title"));
-            contentValues.put(EventService.ORGANIZER, entries.get("organizer"));
-            contentValues.put(EventService.DESCRIPTION, entries.get("description"));
-            contentValues.put(EventService.LOCATION, entries.get("location"));
-            contentValues.put(EventService.PRICE, entries.get("price"));
-            contentValues.put(EventService.DATE, entries.get("date"));
-            contentValues.put(EventService.TIME, entries.get("time"));
+            contentValues.put(DatabaseService.TITLE, entries.get("title"));
+            contentValues.put(DatabaseService.ORGANIZER, entries.get("organizer"));
+            contentValues.put(DatabaseService.DESCRIPTION, entries.get("description"));
+            contentValues.put(DatabaseService.LOCATION, entries.get("location"));
+            contentValues.put(DatabaseService.PRICE, entries.get("price"));
+            contentValues.put(DatabaseService.DATE, entries.get("date"));
+            contentValues.put(DatabaseService.TIME, entries.get("time"));
+            contentValues.put(DatabaseService.ADMIN, UserData.getUserData().getUsername());
 
             try {
-                db.insert(EventService.TABLE_NAME, null, contentValues);
+                db.insert(DatabaseService.EVENT_TABLE_NAME, null, contentValues);
                 return 1;
             } catch (Exception e) {
                 Log.e(this.getClass().getName(), e.getMessage());

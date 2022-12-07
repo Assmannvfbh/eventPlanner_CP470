@@ -4,6 +4,10 @@ package com.example.myapplication;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+/**
+ * This class is designed as singleton. It holds all userdata initialized after each login
+ * to enable easy access.
+ */
 //designed as singleton
 public class UserData {
 
@@ -65,5 +69,13 @@ public class UserData {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public void clear(){
+        username = null;
+        email = null;
+        name = null;
+        surname = null;
+        dateOfBirth = null;
     }
 }

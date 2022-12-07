@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/event_details_toolbar_help"
+        android:title="@string/help"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/event_details_toolbar_logout"
+        android:title="@string/logout"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/event_details_toolbar_plus"
+        android:title="add_User"
+        android:icon="@drawable/ic_baseline_add_32"
+        app:showAsAction="always"/>
+
+</menu>

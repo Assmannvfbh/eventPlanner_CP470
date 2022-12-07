@@ -84,7 +84,7 @@
         android:ems="10"
         android:gravity="center"
         android:hint="@string/login_hint_password"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:textColor="@color/black" />
 
     <Button

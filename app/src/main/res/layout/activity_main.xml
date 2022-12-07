@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/homeIcon"
         android:layout_marginLeft="75dp"
-        android:text="Event List" />
+        android:text="@string/main_my_events_label" />
 
     <TextView
         android:id="@+id/profileLabel"
@@ -58,49 +58,45 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/profileIcon"
         android:layout_marginLeft="75dp"
-        android:text="Profile" />
+        android:text="@string/main_profile_label" />
 
     <ImageView
-        android:id="@+id/MapIcon"
+        android:id="@+id/main_map_icon"
         android:layout_width="90dp"
         android:layout_height="97dp"
         android:layout_below="@id/title"
         android:layout_alignParentRight="true"
         android:layout_marginTop="50dp"
         android:layout_marginRight="50dp"
-        android:background="#000000"
-        android:backgroundTint="#0B0A0A"
-        app:srcCompat="@android:drawable/ic_dialog_map" />
+        app:srcCompat="@drawable/icons8_map_marker_96" />
 
     <TextView
         android:id="@+id/MapLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/MapIcon"
+        android:layout_below="@id/main_map_icon"
         android:layout_alignParentRight="true"
         android:layout_marginRight="75dp"
-        android:text="Map" />
+        android:text="@string/main_map_label" />
 
     <ImageView
-        android:id="@+id/EventIcon"
+        android:id="@+id/main_my_events_icon"
         android:layout_width="99dp"
         android:layout_height="94dp"
         android:layout_below="@id/MapLabel"
         android:layout_alignParentRight="true"
         android:layout_marginTop="100dp"
         android:layout_marginRight="50dp"
-        android:background="#000000"
-        app:srcCompat="@android:drawable/ic_menu_agenda" />
+        app:srcCompat="@drawable/icons8_favorite_96" />
 
     <TextView
-        android:id="@+id/EventLabel"
+        android:id="@+id/main_my_events_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/EventIcon"
+        android:layout_below="@id/main_my_events_icon"
         android:layout_alignParentRight="true"
         android:layout_marginRight="60dp"
-        android:text="Create Event" />
-
+        android:text="@string/main_my_events_label" />
 
 
 </RelativeLayout>

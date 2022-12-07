@@ -3,13 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_standard_help"
+        android:id="@+id/menu_registration_help"
         android:title="@string/help"
         app:showAsAction="never" />
 
-    <item
-        android:id="@+id/menu_standard_logout"
-        android:title="@string/logout"
-        app:showAsAction="never"
-        />
 </menu>

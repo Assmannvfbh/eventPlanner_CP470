@@ -4,13 +4,25 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Marcus Alunni/AndroidStudioProjects/eventPlanner_CP470/app/src/main/res/layout/activity_create_event.xml" value="0.1" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/drawable/ic_baseline_add_32.xml" value="0.1115" />
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_create_event.xml" value="0.25" />
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_event_details.xml" value="0.25" />
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_map_view.xml" value="0.25" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_my_events_list.xml" value="0.25" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_party_list.xml" value="0.25" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_profile.xml" value="0.20697463768115942" />
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_registration.xml" value="0.25" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/activity_to_do_list.xml" value="0.25" />
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/datepicker.xml" value="0.25" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/delete_dialog.xml" value="0.25" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/dialog_help.xml" value="0.176" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/party_row.xml" value="0.25" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/layout/task_item.xml" value="0.25" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/menu/event_details_menu.xml" value="0.264" />
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/menu/login_menu.xml" value="0.25" />
+        <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/menu/registration_menu.xml" value="0.25" />
         <entry key="..\:/Users/Niklas/WLU/EventPlanner/eventPlanner_CP470/app/src/main/res/menu/standard_menu.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_create_event.xml" value="0.24509606461282366" />
         <entry key="app/src/main/res/layout/activity_event_details.xml" value="0.1734375" />
@@ -19,5 +31,7 @@
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+
 </project>

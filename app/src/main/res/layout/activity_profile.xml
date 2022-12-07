@@ -16,7 +16,7 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/registration_toolbar"
+            android:id="@+id/profile_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -24,7 +24,7 @@
             android:id="@+id/profile_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/registration_toolbar"
+            android:layout_below="@id/profile_toolbar"
             android:layout_alignParentTop="false"
             android:layout_alignParentEnd="false"
             android:layout_alignParentBottom="false"
@@ -101,6 +101,7 @@
             android:layout_height="50dp"
             android:layout_below="@id/registration_surname_input"
             android:layout_gravity="center"
+            android:textSize="18dp"
             android:layout_marginLeft="100px"
             android:layout_marginTop="50px"
             android:layout_toRightOf="@id/textView3"

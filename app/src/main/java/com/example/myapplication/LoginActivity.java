@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,25 +17,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 public class LoginActivity extends AppCompatActivity {
 
-    //Test data: Username = assmannvfbh, Password = abc
-    //Test data: Username = Marcus, Password = abc
     Toolbar toolbar;
     EditText username;
     EditText password;
     SQLiteDatabase database;
     Button loginButton;
     ProgressBar progressBar;
-    UserData userData;
+    Dialog helpDialog;
 
 
     @Override
@@ -50,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new loginListener());
 
 
-        RegisterService service = new RegisterService(this);
+        DatabaseService service = new DatabaseService(this);
         database = service.getWritableDatabase();
     }
 
@@ -61,13 +58,30 @@ public class LoginActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    public void openHelpDialog() {
+        helpDialog = new Dialog(this);
+        helpDialog.setContentView(R.layout.dialog_help);
+        Button okButton = helpDialog.findViewById(R.id.help_dialog_ok);
+        TextView text = helpDialog.findViewById(R.id.help_dialog_text);
+
+        text.setText(getResources().getString(R.string.help_dialog_login));
+
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                helpDialog.dismiss();
+            }
+        });
+        helpDialog.show();
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         switch(id){
             case R.id.login_about:
-                Snackbar.make(this.toolbar, getResources().getString(R.string.login_about_Niklas), Toast.LENGTH_SHORT).show();
+                openHelpDialog();
                 break;
             case R.id.login_toolbar_signIn:
                 Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
@@ -104,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
             parameters[0] = entries.get("username");
             parameters[1] = entries.get("password");
 
-            Cursor cursor = database.rawQuery("SELECT * FROM " + RegisterService.TABLE_NAME + " WHERE USERNAME = ? AND PASSWORD = ?",parameters);
+            Cursor cursor = database.rawQuery("SELECT * FROM " + DatabaseService.TEST_TABLE_NAME + " WHERE USERNAME = ? AND PASSWORD = ?",parameters);
             cursor.moveToFirst();
             publishProgress(25);
 
