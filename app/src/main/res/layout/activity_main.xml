@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/homeIcon"
+        android:id="@+id/dancingIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/title"
@@ -48,9 +48,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/homeIcon"
+        android:layout_below="@id/dancingIcon"
         android:layout_marginLeft="75dp"
-        android:text="@string/main_my_events_label" />
+        android:text="@string/main_all_events_label" />
 
     <TextView
         android:id="@+id/profileLabel"
