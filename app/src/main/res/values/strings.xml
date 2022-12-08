@@ -53,6 +53,7 @@
     <string name="snackbar_event_deleted">Event deleted</string>
     <string name="eventDetail_leave_button">Leave Event</string>
     <string name="main_my_events_label">My Events</string>
+    <string name="main_all_events_label">All Events</string>
     <string name="main_event_list_label">Event List</string>
     <string name="main_map_label">Map</string>
     <string name="main_profile_label">Profile</string>

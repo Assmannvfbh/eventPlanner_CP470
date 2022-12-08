@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         profile = (ImageView) findViewById(R.id.profileIcon);
         myEvents = (ImageView) findViewById(R.id.main_my_events_icon);
 
-        party_list = (ImageView) findViewById(R.id.homeIcon);
+        party_list = (ImageView) findViewById(R.id.dancingIcon);
 
         map = (ImageView) findViewById(R.id.main_map_icon);
 
