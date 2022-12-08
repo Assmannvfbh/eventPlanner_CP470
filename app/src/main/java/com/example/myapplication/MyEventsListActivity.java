@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -109,7 +110,8 @@ public class MyEventsListActivity extends AppCompatActivity {
 
     private void setAdapter() {
         MyEventsListAdapter adapter = new MyEventsListAdapter();
-
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        list.addItemDecoration(dividerItemDecoration);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         list.setLayoutManager(layoutManager);
         list.setItemAnimator(new DefaultItemAnimator());
